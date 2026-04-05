@@ -6,7 +6,7 @@
     <title>Kurumsal | Tunçay Sandalye</title>
     <meta name="description" content="Tunçay Sandalye hakkında bilgi edinin. Kalite, tasarım ve özgünlük ilkeleriyle üretim yapan premium sandalye markası.">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
-    <style>
+    <link rel="stylesheet" href="style.css">
         *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
         :root {
@@ -284,22 +284,99 @@
 </head>
 <body>
 
-<!-- Navbar -->
-<nav class="navbar">
-    <a href="index.html" class="nav-brand">Tunçay <span>Sandalye</span></a>
-    <div class="nav-links">
-        <a href="index.html">Ana Sayfa</a>
-        <a href="kurumsal.html" class="active">Kurumsal</a>
-        <a href="urunler.html">Ürünler</a>
-        <a href="https://www.tuncaysandalye.com/katalog/TuncaySandalyeKatalog.pdf" target="_blank" rel="noopener">Katalog</a>
-        <a href="destek.html">Destek</a>
-        <a href="iletisim.html">İletişim</a>
+    <div class="announcement-bar">
+        <div class="marquee-content">
+            <span>🚚 Tüm Alışverişlerde Hızlı ve Güvenilir Kargo!</span>
+            <span>💳 %100 Güvenli 3D Secure Ödeme Altyapısı</span>
+            <span>🛡️ Müşteri Memnuniyeti ve Ürün Garantisi</span>
+            <span>⭐ Kalite ve Lüks Her Zaman Sizinle</span>
+            <span>🚚 Tüm Alışverişlerde Hızlı ve Güvenilir Kargo!</span>
+            <span>💳 %100 Güvenli 3D Secure Ödeme Altyapısı</span>
+            <span>🛡️ Müşteri Memnuniyeti ve Ürün Garantisi</span>
+            <span>⭐ Kalite ve Lüks Her Zaman Sizinle</span>
+        </div>
     </div>
-    <div class="nav-actions">
-        <a href="auth.html#login">Giriş Yap</a>
-        <a href="auth.html#register">Kaydol</a>
-    </div>
-</nav>
+    <header class="header">
+        <div class="header-container">
+            <div class="logo">
+               <a href="index.html"><img src="logo2.png.png" alt="Tunçay Sandalye" onerror="this.onerror=null;this.outerHTML='<a href=index.html><h1>Tunçay <span>Sandalye</span></h1></a>';"></a>
+            </div>
+            <nav class="nav">
+                <a href="index.html">Ana Sayfa</a>
+                <a href="kurumsal.html" class="active-page">Kurumsal</a>
+                <a href="urunler.html">Ürünler</a>
+                <a href="https://www.tuncaysandalye.com/katalog/TuncaySandalyeKatalog.pdf" target="_blank" rel="noopener">Katalog</a>
+                <a href="destek.html">Destek</a>
+                <a href="iletisim.html">İletişim</a>
+            </nav>
+            <div class="header-actions">
+                <div class="search-action" id="search-btn">
+                    <button class="search-toggle-btn" aria-label="Arama Yap">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="22" height="22"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+                    </button>
+                    <div class="search-bar-inline">
+                        <input type="text" placeholder="Ürün Ara..." id="search-input-inline">
+                        <button class="close-inline-search" id="close-inline-search" aria-label="Aramayı Kapat">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="18" height="18"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+                        </button>
+                    </div>
+                </div>
+                <div class="account-action" id="account-btn">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="22" height="22"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>
+                    <span>Hesap</span>
+                    <svg viewBox="0 0 24 24" fill="none" class="caret" stroke="currentColor" stroke-width="2" width="16" height="16"><polyline points="6 9 12 15 18 9"></polyline></svg>
+                    <div class="account-dropdown" id="account-dropdown">
+                        <a href="auth.html#login">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="16" height="16"><path d="M15 3h4a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2h-4"/><polyline points="10 17 15 12 10 7"/><line x1="15" y1="12" x2="3" y2="12"/></svg>
+                            Giriş Yap
+                        </a>
+                        <a href="auth.html#register">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="16" height="16"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/><line x1="12" y1="11" x2="12" y2="17"/><line x1="9" y1="14" x2="15" y2="14"/></svg>
+                            Kaydol
+                        </a>
+                    </div>
+                </div>
+                <div class="divider"></div>
+                <div class="cart-action" id="cart-btn">
+                    <div class="cart-icon-wrapper">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="22" height="22"><circle cx="9" cy="21" r="1"></circle><circle cx="20" cy="21" r="1"></circle><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path></svg>
+                        <span class="cart-badge" id="cart-badge">0</span>
+                    </div>
+                    <span id="cart-price">₺ 0,00</span>
+                    <div class="cart-dropdown" id="cart-dropdown">
+                        <div class="cart-dropdown-header">
+                            <span id="cart-dropdown-title">Sepetim (0 Ürün)</span>
+                            <button class="close-cart-btn" id="close-cart">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="18" height="18"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+                            </button>
+                        </div>
+                        <div class="cart-dropdown-body">
+                            <div class="empty-cart-state" id="empty-cart-state">
+                                <div class="empty-icon">
+                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" width="64" height="64"><circle cx="9" cy="21" r="1"></circle><circle cx="20" cy="21" r="1"></circle><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path></svg>
+                                </div>
+                                <h3>Sepetiniz Boş</h3>
+                                <p>Hemen alışverişe başlayın!</p>
+                            </div>
+                            <div class="filled-cart-state" id="filled-cart-state" style="display: none;">
+                                <div class="cart-items-list" id="cart-items-list"></div>
+                                <div class="cart-summary">
+                                    <div class="summary-line">
+                                        <span>Ara Toplam</span>
+                                        <span id="cart-subtotal">₺ 0,00</span>
+                                    </div>
+                                </div>
+                                <div class="cart-footer-actions">
+                                    <button class="cart-btn-secondary">Sepete Git</button>
+                                    <button class="cart-btn-primary">Hemen Satın Al</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
 
 <!-- Hero -->
 <section class="hero">
@@ -379,5 +456,6 @@
     <span class="footer-copy">© 2024 Tüm hakları saklıdır.</span>
 </footer>
 
+<script src="script.js"></script>
 </body>
 </html>
