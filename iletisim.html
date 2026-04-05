@@ -25,14 +25,18 @@
         .navbar {
             position: sticky; top: 0; z-index: 100;
             background: white; border-bottom: 1px solid var(--gray-200);
-            padding: 0 60px;
+            padding: 0 50px;
             display: flex; align-items: center; justify-content: space-between;
             height: 65px;
         }
-        .nav-brand { font-size: 18px; font-weight: 800; color: var(--secondary); text-decoration: none; }
+        .nav-brand { font-size: 18px; font-weight: 800; color: var(--secondary); text-decoration: none; flex-shrink: 0; }
         .nav-brand span { color: var(--primary); }
-        .nav-back { display: flex; align-items: center; gap: 8px; font-size: 13px; font-weight: 600; color: var(--gray-600); text-decoration: none; transition: color .25s; }
-        .nav-back:hover { color: var(--primary); }
+        .nav-links { display: flex; gap: 28px; }
+        .nav-links a { font-size: 13px; font-weight: 600; color: var(--gray-600); text-decoration: none; text-transform: uppercase; letter-spacing: 0.6px; transition: color .2s; }
+        .nav-links a:hover, .nav-links a.active { color: var(--primary); }
+        .nav-actions { display: flex; align-items: center; gap: 16px; flex-shrink: 0; }
+        .nav-actions a { font-size: 13px; font-weight: 600; color: var(--gray-600); text-decoration: none; transition: color .2s; }
+        .nav-actions a:hover { color: var(--primary); }
 
         /* HERO */
         .hero {
@@ -261,10 +265,18 @@
 <!-- Navbar -->
 <nav class="navbar">
     <a href="index.html" class="nav-brand">Tunçay <span>Sandalye</span></a>
-    <a href="index.html" class="nav-back">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="15" height="15"><line x1="19" y1="12" x2="5" y2="12"/><polyline points="12 19 5 12 12 5"/></svg>
-        Ana Sayfaya Dön
-    </a>
+    <div class="nav-links">
+        <a href="index.html">Ana Sayfa</a>
+        <a href="kurumsal.html">Kurumsal</a>
+        <a href="urunler.html">Ürünler</a>
+        <a href="https://www.tuncaysandalye.com/katalog/TuncaySandalyeKatalog.pdf" target="_blank" rel="noopener">Katalog</a>
+        <a href="destek.html">Destek</a>
+        <a href="iletisim.html" class="active">İletişim</a>
+    </div>
+    <div class="nav-actions">
+        <a href="auth.html#login">Giriş Yap</a>
+        <a href="auth.html#register">Kaydol</a>
+    </div>
 </nav>
 
 <!-- Hero -->
