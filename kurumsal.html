@@ -1,0 +1,395 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kurumsal | Tunçay Sandalye</title>
+    <meta name="description" content="Tunçay Sandalye hakkında bilgi edinin. Kalite, tasarım ve özgünlük ilkeleriyle üretim yapan premium sandalye markası.">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+        :root {
+            --primary: #E30A17;
+            --secondary: #1a1a1a;
+            --gray-100: #f8f8f8;
+            --gray-200: #efefef;
+            --gray-400: #999;
+            --gray-600: #555;
+            --ease: cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            color: var(--secondary);
+            background: #fff;
+        }
+
+        /* ── NAVBAR (simple, consistent) ── */
+        .navbar {
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            background: white;
+            border-bottom: 1px solid var(--gray-200);
+            padding: 0 60px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            height: 70px;
+        }
+
+        .nav-brand {
+            font-size: 18px;
+            font-weight: 800;
+            color: var(--secondary);
+            text-decoration: none;
+            letter-spacing: -0.3px;
+        }
+
+        .nav-brand span { color: var(--primary); }
+
+        .nav-back {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 13px;
+            font-weight: 600;
+            color: var(--gray-600);
+            text-decoration: none;
+            transition: color 0.25s;
+        }
+
+        .nav-back:hover { color: var(--primary); }
+
+        /* ── HERO ── */
+        .hero {
+            background: var(--secondary);
+            padding: 100px 60px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: 'TUNÇAY';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-size: 200px;
+            font-weight: 900;
+            color: rgba(255,255,255,0.025);
+            letter-spacing: -10px;
+            pointer-events: none;
+            user-select: none;
+            white-space: nowrap;
+        }
+
+        .hero-tag {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: rgba(227,10,23,0.12);
+            color: var(--primary);
+            border: 1px solid rgba(227,10,23,0.18);
+            padding: 5px 14px;
+            border-radius: 30px;
+            font-size: 11px;
+            font-weight: 700;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            margin-bottom: 20px;
+        }
+
+        .hero h1 {
+            font-size: clamp(36px, 5vw, 64px);
+            font-weight: 800;
+            color: white;
+            letter-spacing: -2px;
+            line-height: 1.1;
+            margin-bottom: 20px;
+        }
+
+        .hero h1 span { color: var(--primary); }
+
+        .hero p {
+            font-size: 17px;
+            color: rgba(255,255,255,0.45);
+            font-weight: 400;
+            max-width: 480px;
+            margin: 0 auto;
+            line-height: 1.7;
+        }
+
+        /* ── CONTENT ── */
+        .content {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 100px 40px;
+        }
+
+        /* Story */
+        .story {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 80px;
+            align-items: center;
+            margin-bottom: 100px;
+        }
+
+        .story-label {
+            font-size: 11px;
+            font-weight: 700;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: var(--primary);
+            margin-bottom: 16px;
+        }
+
+        .story h2 {
+            font-size: 32px;
+            font-weight: 800;
+            line-height: 1.2;
+            letter-spacing: -0.8px;
+            margin-bottom: 20px;
+        }
+
+        .story p {
+            font-size: 15px;
+            color: var(--gray-600);
+            line-height: 1.8;
+        }
+
+        .story-visual {
+            background: var(--gray-100);
+            border-radius: 20px;
+            aspect-ratio: 4/3;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .story-visual::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            right: 0;
+            width: 60%;
+            height: 60%;
+            background: radial-gradient(circle at bottom right, rgba(227,10,23,0.08), transparent);
+        }
+
+        .story-visual-icon {
+            color: var(--gray-200);
+        }
+
+        /* Stats */
+        .stats {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2px;
+            background: var(--gray-200);
+            border-radius: 20px;
+            overflow: hidden;
+            margin-bottom: 100px;
+        }
+
+        .stat {
+            background: white;
+            padding: 44px 32px;
+            text-align: center;
+        }
+
+        .stat-num {
+            font-size: 44px;
+            font-weight: 800;
+            color: var(--secondary);
+            letter-spacing: -2px;
+            line-height: 1;
+            margin-bottom: 8px;
+        }
+
+        .stat-num span { color: var(--primary); }
+
+        .stat-label {
+            font-size: 13px;
+            color: var(--gray-400);
+            font-weight: 500;
+        }
+
+        /* Values */
+        .section-label {
+            font-size: 11px;
+            font-weight: 700;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: var(--primary);
+            margin-bottom: 12px;
+        }
+
+        .section-title {
+            font-size: 28px;
+            font-weight: 800;
+            letter-spacing: -0.6px;
+            margin-bottom: 40px;
+        }
+
+        .values {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 24px;
+        }
+
+        .value-card {
+            padding: 28px 24px;
+            border: 1.5px solid var(--gray-200);
+            border-radius: 16px;
+            transition: border-color 0.3s, box-shadow 0.3s;
+        }
+
+        .value-card:hover {
+            border-color: var(--primary);
+            box-shadow: 0 4px 20px rgba(227,10,23,0.06);
+        }
+
+        .value-icon {
+            width: 44px;
+            height: 44px;
+            background: var(--gray-100);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 16px;
+            color: var(--primary);
+        }
+
+        .value-card h3 {
+            font-size: 15px;
+            font-weight: 700;
+            margin-bottom: 8px;
+        }
+
+        .value-card p {
+            font-size: 13px;
+            color: var(--gray-600);
+            line-height: 1.7;
+        }
+
+        /* ── FOOTER ── */
+        .footer {
+            background: var(--secondary);
+            padding: 40px 60px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .footer-brand {
+            font-size: 16px;
+            font-weight: 800;
+            color: white;
+        }
+
+        .footer-brand span { color: var(--primary); }
+
+        .footer-copy {
+            font-size: 13px;
+            color: rgba(255,255,255,0.3);
+        }
+    </style>
+</head>
+<body>
+
+<!-- Navbar -->
+<nav class="navbar">
+    <a href="index.html" class="nav-brand">Tunçay <span>Sandalye</span></a>
+    <a href="index.html" class="nav-back">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="15" height="15"><line x1="19" y1="12" x2="5" y2="12"/><polyline points="12 19 5 12 12 5"/></svg>
+        Ana Sayfaya Dön
+    </a>
+</nav>
+
+<!-- Hero -->
+<section class="hero">
+    <div class="hero-tag">Hakkımızda</div>
+    <h1>Tasarım <span>değil</span>,<br>sanat üretiyoruz</h1>
+    <p>Her sandalye, bir zanaatkârın elinden ve yüzyıllık bir geleneğin ruhundan doğuyor.</p>
+</section>
+
+<!-- Content -->
+<div class="content">
+
+    <!-- Story -->
+    <div class="story">
+        <div>
+            <div class="story-label">Hikayemiz</div>
+            <h2>1987'den bu yana aynı özenle</h2>
+            <p>Tunçay Sandalye, küçük bir atölyede başlayan tutkuyla bugün Türkiye'nin en güvenilir premium mobilya markalarından biri haline geldi. Her ürünümüzde kaliteyi asla ödün vermediğimiz bir ilke olarak benimsedik.</p>
+        </div>
+        <div class="story-visual">
+            <svg class="story-visual-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="0.8" width="80" height="80">
+                <path d="M20 9V7a2 2 0 0 0-2-2H6a2 2 0 0 0-2 2v2"/>
+                <path d="M2 9h20"/><path d="M12 9v12"/><path d="M5 21h14"/>
+            </svg>
+        </div>
+    </div>
+
+    <!-- Stats -->
+    <div class="stats">
+        <div class="stat">
+            <div class="stat-num">37<span>+</span></div>
+            <div class="stat-label">Yıllık Deneyim</div>
+        </div>
+        <div class="stat">
+            <div class="stat-num">12<span>K</span></div>
+            <div class="stat-label">Mutlu Müşteri</div>
+        </div>
+        <div class="stat">
+            <div class="stat-num">200<span>+</span></div>
+            <div class="stat-label">Ürün Modeli</div>
+        </div>
+    </div>
+
+    <!-- Values -->
+    <div>
+        <div class="section-label">Değerlerimiz</div>
+        <div class="section-title">Bizi biz yapan üç ilke</div>
+        <div class="values">
+            <div class="value-card">
+                <div class="value-icon">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="20" height="20"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+                </div>
+                <h3>Üstün Kalite</h3>
+                <p>Her malzeme titizlikle seçilir. Ürünlerimiz sadece güzel değil, nesiller boyu dayanıklıdır.</p>
+            </div>
+            <div class="value-card">
+                <div class="value-icon">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="20" height="20"><circle cx="13.5" cy="6.5" r=".5" fill="currentColor"/><circle cx="17.5" cy="10.5" r=".5" fill="currentColor"/><circle cx="8.5" cy="7.5" r=".5" fill="currentColor"/><circle cx="6.5" cy="12.5" r=".5" fill="currentColor"/><path d="M12 2C6.5 2 2 6.5 2 12s4.5 10 10 10c.926 0 1.648-.746 1.648-1.688 0-.437-.18-.835-.437-1.125-.29-.289-.438-.652-.438-1.125a1.64 1.64 0 0 1 1.668-1.668h1.996c3.051 0 5.555-2.503 5.555-5.554C21.992 6.012 17.5 2 12 2z"/></svg>
+                </div>
+                <h3>Özgün Tasarım</h3>
+                <p>Akımları takip etmeyiz, trendi biz belirleriz. Her koleksiyon kendi dilini konuşur.</p>
+            </div>
+            <div class="value-card">
+                <div class="value-icon">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="20" height="20"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+                </div>
+                <h3>İnsan Odaklılık</h3>
+                <p>Sadece ürün satmıyoruz. Her müşterimizle uzun soluklu bir ilişki kuruyoruz.</p>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+<!-- Footer -->
+<footer class="footer">
+    <span class="footer-brand">Tunçay <span>Sandalye</span></span>
+    <span class="footer-copy">© 2024 Tüm hakları saklıdır.</span>
+</footer>
+
+</body>
+</html>

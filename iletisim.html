@@ -1,0 +1,430 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>İletişim | Tunçay Sandalye</title>
+    <meta name="description" content="Tunçay Sandalye iletişim bilgileri ve iletişim formu. Sorularınız için bize ulaşın.">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+        :root {
+            --primary: #E30A17;
+            --secondary: #1a1a1a;
+            --gray-100: #f7f7f7;
+            --gray-200: #ebebeb;
+            --gray-400: #aaa;
+            --gray-600: #666;
+            --ease: cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        body { font-family: 'Inter', sans-serif; color: var(--secondary); background: #fff; }
+
+        /* NAVBAR */
+        .navbar {
+            position: sticky; top: 0; z-index: 100;
+            background: white; border-bottom: 1px solid var(--gray-200);
+            padding: 0 60px;
+            display: flex; align-items: center; justify-content: space-between;
+            height: 65px;
+        }
+        .nav-brand { font-size: 18px; font-weight: 800; color: var(--secondary); text-decoration: none; }
+        .nav-brand span { color: var(--primary); }
+        .nav-back { display: flex; align-items: center; gap: 8px; font-size: 13px; font-weight: 600; color: var(--gray-600); text-decoration: none; transition: color .25s; }
+        .nav-back:hover { color: var(--primary); }
+
+        /* HERO */
+        .hero {
+            background: var(--secondary);
+            padding: 80px 60px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+        .hero::before {
+            content: 'İLETİŞİM';
+            position: absolute;
+            top: 50%; left: 50%;
+            transform: translate(-50%, -50%);
+            font-size: 160px; font-weight: 900;
+            color: rgba(255,255,255,0.025);
+            letter-spacing: -8px;
+            pointer-events: none; user-select: none;
+            white-space: nowrap;
+        }
+        .hero-tag {
+            display: inline-flex; align-items: center; gap: 7px;
+            background: rgba(227,10,23,.12); color: var(--primary);
+            border: 1px solid rgba(227,10,23,.18);
+            padding: 5px 14px; border-radius: 30px;
+            font-size: 11px; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase;
+            margin-bottom: 18px;
+        }
+        .hero h1 { font-size: clamp(30px, 4vw, 52px); font-weight: 800; color: white; letter-spacing: -1.5px; margin-bottom: 14px; }
+        .hero h1 span { color: var(--primary); }
+        .hero p { font-size: 16px; color: rgba(255,255,255,.45); max-width: 420px; margin: 0 auto; line-height: 1.7; }
+
+        /* MAIN */
+        .main {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 72px 40px 80px;
+        }
+
+        /* Info Cards Row */
+        .info-row {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 16px;
+            margin-bottom: 64px;
+        }
+
+        .info-card {
+            border: 1.5px solid var(--gray-200);
+            border-radius: 16px;
+            padding: 28px 22px;
+            transition: border-color .3s, box-shadow .3s, transform .3s;
+        }
+        .info-card:hover {
+            border-color: var(--primary);
+            box-shadow: 0 6px 20px rgba(227,10,23,.07);
+            transform: translateY(-2px);
+        }
+        .info-card-icon {
+            width: 46px; height: 46px;
+            background: var(--gray-100); border-radius: 12px;
+            display: flex; align-items: center; justify-content: center;
+            color: var(--primary); margin-bottom: 16px;
+        }
+        .info-card-label {
+            font-size: 11px; font-weight: 700;
+            letter-spacing: 1.2px; text-transform: uppercase;
+            color: var(--gray-400); margin-bottom: 8px;
+        }
+        .info-card-value { font-size: 15px; font-weight: 700; margin-bottom: 4px; }
+        .info-card-sub { font-size: 13px; color: var(--gray-600); line-height: 1.5; }
+
+        /* Content Grid */
+        .content-grid {
+            display: grid;
+            grid-template-columns: 1fr 1.1fr;
+            gap: 40px;
+            align-items: start;
+        }
+
+        /* Map Placeholder */
+        .map-wrap {
+            border-radius: 20px;
+            overflow: hidden;
+            border: 1.5px solid var(--gray-200);
+            background: var(--gray-100);
+            aspect-ratio: 4/3;
+            position: relative;
+        }
+        .map-wrap iframe {
+            width: 100%; height: 100%;
+            border: none; display: block;
+        }
+
+        .map-overlay {
+            position: absolute; inset: 0;
+            display: flex; flex-direction: column;
+            align-items: center; justify-content: center;
+            gap: 14px;
+            background: var(--gray-100);
+        }
+
+        .map-pin {
+            width: 56px; height: 56px;
+            background: white; border-radius: 50%;
+            border: 1.5px solid var(--gray-200);
+            display: flex; align-items: center; justify-content: center;
+            color: var(--primary);
+            box-shadow: 0 4px 16px rgba(0,0,0,.06);
+        }
+
+        .map-overlay h3 { font-size: 16px; font-weight: 700; }
+        .map-overlay p { font-size: 13px; color: var(--gray-600); text-align: center; max-width: 220px; line-height: 1.6; }
+
+        .map-btn {
+            padding: 10px 20px;
+            background: var(--secondary); color: white;
+            border: none; border-radius: 10px;
+            font-family: 'Inter', sans-serif;
+            font-size: 13px; font-weight: 700;
+            cursor: pointer; text-decoration: none;
+            transition: background .2s;
+            display: inline-block;
+        }
+        .map-btn:hover { background: var(--primary); }
+
+        /* Hours */
+        .hours-card {
+            margin-top: 16px;
+            border: 1.5px solid var(--gray-200);
+            border-radius: 16px; overflow: hidden;
+        }
+        .hours-title {
+            padding: 16px 20px;
+            font-size: 13px; font-weight: 700;
+            border-bottom: 1px solid var(--gray-200);
+            background: var(--gray-100);
+        }
+        .hours-row {
+            padding: 12px 20px;
+            display: flex; justify-content: space-between; align-items: center;
+            border-bottom: 1px solid var(--gray-200);
+            font-size: 13px;
+        }
+        .hours-row:last-child { border-bottom: none; }
+        .hours-row .day { font-weight: 500; color: var(--gray-600); }
+        .hours-row .time { font-weight: 600; }
+        .hours-row .closed { color: var(--gray-400); font-weight: 500; }
+        .hours-today .day { color: var(--primary); font-weight: 700; }
+        .hours-today .time { color: var(--primary); }
+
+        /* Form */
+        .form-card {
+            background: var(--gray-100);
+            border: 1.5px solid var(--gray-200);
+            border-radius: 20px;
+            padding: 36px 32px;
+        }
+        .form-card h2 { font-size: 22px; font-weight: 800; letter-spacing: -.4px; margin-bottom: 6px; }
+        .form-card > p { font-size: 13px; color: var(--gray-600); margin-bottom: 28px; line-height: 1.6; }
+
+        .form-row-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+        .form-group { margin-bottom: 14px; }
+        .form-label { display: block; font-size: 12px; font-weight: 600; color: var(--secondary); margin-bottom: 6px; }
+
+        .form-input, .form-select, .form-textarea {
+            width: 100%; padding: 12px 14px;
+            border: 1.5px solid var(--gray-200);
+            border-radius: 11px;
+            font-family: 'Inter', sans-serif; font-size: 14px; font-weight: 500;
+            color: var(--secondary); background: white; outline: none;
+            transition: border-color .25s, box-shadow .25s;
+        }
+        .form-input:focus, .form-select:focus, .form-textarea:focus {
+            border-color: var(--primary);
+            box-shadow: 0 0 0 3px rgba(227,10,23,.06);
+        }
+        .form-textarea { resize: vertical; min-height: 120px; }
+        .form-select { cursor: pointer; }
+
+        .btn-send {
+            width: 100%; padding: 14px;
+            background: var(--secondary); color: white;
+            border: none; border-radius: 12px;
+            font-family: 'Inter', sans-serif; font-size: 14px; font-weight: 700;
+            cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 9px;
+            transition: background .25s, transform .25s;
+            margin-top: 4px;
+        }
+        .btn-send:hover { background: var(--primary); transform: translateY(-1px); }
+        .btn-send:active { transform: translateY(0); }
+
+        /* Social */
+        .social-row {
+            display: flex; gap: 12px; margin-top: 32px;
+        }
+        .social-btn {
+            flex: 1; padding: 13px;
+            border: 1.5px solid var(--gray-200); border-radius: 12px;
+            background: white; cursor: pointer;
+            font-family: 'Inter', sans-serif; font-size: 13px; font-weight: 600;
+            color: var(--secondary);
+            display: flex; align-items: center; justify-content: center; gap: 9px;
+            text-decoration: none;
+            transition: border-color .25s, background .25s, color .25s;
+        }
+        .social-btn:hover { border-color: var(--primary); color: var(--primary); background: #fff5f5; }
+
+        /* FOOTER */
+        .footer {
+            background: var(--secondary); padding: 32px 60px;
+            display: flex; align-items: center; justify-content: space-between;
+        }
+        .footer-brand { font-size: 15px; font-weight: 800; color: white; }
+        .footer-brand span { color: var(--primary); }
+        .footer-copy { font-size: 13px; color: rgba(255,255,255,.3); }
+
+        @media (max-width: 900px) {
+            .info-row { grid-template-columns: repeat(2, 1fr); }
+            .content-grid { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+
+<!-- Navbar -->
+<nav class="navbar">
+    <a href="index.html" class="nav-brand">Tunçay <span>Sandalye</span></a>
+    <a href="index.html" class="nav-back">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="15" height="15"><line x1="19" y1="12" x2="5" y2="12"/><polyline points="12 19 5 12 12 5"/></svg>
+        Ana Sayfaya Dön
+    </a>
+</nav>
+
+<!-- Hero -->
+<section class="hero">
+    <div class="hero-tag">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="11" height="11"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+        İletişim
+    </div>
+    <h1>Bizimle <span>iletişime</span> geçin</h1>
+    <p>Her sorunuz için buradayız. Size en hızlı şekilde dönüş yaparız.</p>
+</section>
+
+<div class="main">
+
+    <!-- Info Cards -->
+    <div class="info-row">
+        <div class="info-card">
+            <div class="info-card-icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="20" height="20"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.6 1.2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L7.91 8.91a16 16 0 0 0 6 6l.91-.91a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+            </div>
+            <div class="info-card-label">Telefon</div>
+            <div class="info-card-value">0212 000 00 00</div>
+            <div class="info-card-sub">Hft. içi 09:00 – 18:00</div>
+        </div>
+
+        <div class="info-card">
+            <div class="info-card-icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="20" height="20"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+            </div>
+            <div class="info-card-label">E-posta</div>
+            <div class="info-card-value">info@tuncay<wbr>sandalye.com</div>
+            <div class="info-card-sub">24 saat içinde yanıt</div>
+        </div>
+
+        <div class="info-card">
+            <div class="info-card-icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="20" height="20"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+            </div>
+            <div class="info-card-label">Adres</div>
+            <div class="info-card-value">İstanbul, Türkiye</div>
+            <div class="info-card-sub">Showroom — randevu ile</div>
+        </div>
+
+        <div class="info-card">
+            <div class="info-card-icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="20" height="20"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="8" x2="8" y2="8"/><line x1="16" y1="12" x2="8" y2="12"/><line x1="10" y1="16" x2="8" y2="16"/></svg>
+            </div>
+            <div class="info-card-label">WhatsApp</div>
+            <div class="info-card-value">0530 000 00 00</div>
+            <div class="info-card-sub">Hızlı destek hattı</div>
+        </div>
+    </div>
+
+    <!-- Content Grid -->
+    <div class="content-grid">
+
+        <!-- Left: Map + Hours -->
+        <div>
+            <div class="map-wrap">
+                <div class="map-overlay">
+                    <div class="map-pin">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="22" height="22"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+                    </div>
+                    <h3>Tunçay Sandalye Showroom</h3>
+                    <p>İstanbul, Türkiye</p>
+                    <a href="https://maps.google.com" target="_blank" class="map-btn">Haritada Gör</a>
+                </div>
+            </div>
+
+            <div class="hours-card">
+                <div class="hours-title">Çalışma Saatleri</div>
+                <div class="hours-row hours-today">
+                    <span class="day">Pazartesi – Cuma</span>
+                    <span class="time">09:00 – 18:00</span>
+                </div>
+                <div class="hours-row">
+                    <span class="day">Cumartesi</span>
+                    <span class="time">10:00 – 16:00</span>
+                </div>
+                <div class="hours-row">
+                    <span class="day">Pazar</span>
+                    <span class="closed">Kapalı</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Right: Form -->
+        <div class="form-card">
+            <h2>Bize Yazın</h2>
+            <p>Formu doldurun, en kısa sürede size dönüş yapalım.</p>
+
+            <div class="form-row-2">
+                <div class="form-group">
+                    <label class="form-label">Ad</label>
+                    <input type="text" class="form-input" placeholder="Adınız">
+                </div>
+                <div class="form-group">
+                    <label class="form-label">Soyad</label>
+                    <input type="text" class="form-input" placeholder="Soyadınız">
+                </div>
+            </div>
+
+            <div class="form-row-2">
+                <div class="form-group">
+                    <label class="form-label">E-posta</label>
+                    <input type="email" class="form-input" placeholder="ornek@email.com">
+                </div>
+                <div class="form-group">
+                    <label class="form-label">Telefon</label>
+                    <input type="tel" class="form-input" placeholder="05XX XXX XX XX">
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class="form-label">Konu</label>
+                <select class="form-select">
+                    <option value="">Konu seçin</option>
+                    <option>Ürün Hakkında Bilgi</option>
+                    <option>Fiyat Teklifi</option>
+                    <option>Özel / Toplu Sipariş</option>
+                    <option>Showroom Randevusu</option>
+                    <option>İş Ortaklığı</option>
+                    <option>Diğer</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label class="form-label">Mesaj</label>
+                <textarea class="form-textarea" placeholder="Mesajınızı buraya yazın..."></textarea>
+            </div>
+
+            <button class="btn-send" onclick="sendForm()">
+                Gönder
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" width="16" height="16"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
+            </button>
+
+            <div class="social-row">
+                <a href="https://wa.me/905300000000" target="_blank" class="social-btn">
+                    <svg viewBox="0 0 24 24" fill="currentColor" width="16" height="16"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.123.554 4.117 1.528 5.851L.057 23.75a.5.5 0 0 0 .625.624l5.898-1.471A11.95 11.95 0 0 0 12 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 22c-1.887 0-3.655-.516-5.174-1.415l-.37-.219-3.843.958.975-3.843-.228-.373A10 10 0 0 1 2 12c0-5.514 4.486-10 10-10s10 4.486 10 10-4.486 10-10 10z"/></svg>
+                    WhatsApp
+                </a>
+                <a href="mailto:info@tuncaysandalye.com" class="social-btn">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="16" height="16"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+                    E-posta Gönder
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Footer -->
+<footer class="footer">
+    <span class="footer-brand">Tunçay <span>Sandalye</span></span>
+    <span class="footer-copy">© 2024 Tüm hakları saklıdır.</span>
+</footer>
+
+<script>
+    function sendForm() {
+        alert('Mesajınız alındı! En kısa sürede size dönüş yapacağız.');
+    }
+</script>
+</body>
+</html>

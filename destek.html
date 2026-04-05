@@ -1,0 +1,532 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Destek | Tunçay Sandalye</title>
+    <meta name="description" content="Sipariş takibi, kargo, iade ve değişim işlemleri için Tunçay Sandalye destek merkezi.">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+        :root {
+            --primary: #E30A17;
+            --secondary: #1a1a1a;
+            --gray-100: #f7f7f7;
+            --gray-200: #ebebeb;
+            --gray-400: #aaa;
+            --gray-600: #666;
+            --ease: cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        body { font-family: 'Inter', sans-serif; color: var(--secondary); background: #fff; }
+
+        /* NAVBAR */
+        .navbar {
+            position: sticky; top: 0; z-index: 100;
+            background: white; border-bottom: 1px solid var(--gray-200);
+            padding: 0 60px;
+            display: flex; align-items: center; justify-content: space-between;
+            height: 65px;
+        }
+        .nav-brand { font-size: 18px; font-weight: 800; color: var(--secondary); text-decoration: none; }
+        .nav-brand span { color: var(--primary); }
+        .nav-back { display: flex; align-items: center; gap: 8px; font-size: 13px; font-weight: 600; color: var(--gray-600); text-decoration: none; transition: color .25s; }
+        .nav-back:hover { color: var(--primary); }
+
+        /* HERO */
+        .hero { background: var(--secondary); padding: 72px 60px; text-align: center; }
+        .hero-tag {
+            display: inline-flex; align-items: center; gap: 7px;
+            background: rgba(227,10,23,.12); color: var(--primary);
+            border: 1px solid rgba(227,10,23,.18);
+            padding: 5px 14px; border-radius: 30px;
+            font-size: 11px; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase;
+            margin-bottom: 18px;
+        }
+        .hero h1 { font-size: clamp(30px, 4vw, 50px); font-weight: 800; color: white; letter-spacing: -1.5px; margin-bottom: 14px; }
+        .hero h1 span { color: var(--primary); }
+        .hero p { font-size: 16px; color: rgba(255,255,255,.45); max-width: 460px; margin: 0 auto; line-height: 1.7; }
+
+        /* ORDER TRACK */
+        .track-bar {
+            background: var(--gray-100); border-bottom: 1px solid var(--gray-200);
+            padding: 28px 60px;
+            display: flex; flex-direction: column; align-items: center; gap: 14px;
+        }
+        .track-bar p { font-size: 14px; font-weight: 600; color: var(--secondary); }
+        .track-form { display: flex; gap: 10px; width: 100%; max-width: 560px; }
+        .track-input {
+            flex: 1; padding: 12px 18px;
+            border: 1.5px solid var(--gray-200); border-radius: 12px;
+            font-size: 14px; font-family: 'Inter', sans-serif; font-weight: 500;
+            outline: none; transition: border-color .25s;
+        }
+        .track-input:focus { border-color: var(--primary); }
+        .track-btn {
+            padding: 12px 22px;
+            background: var(--primary); color: white;
+            border: none; border-radius: 12px;
+            font-size: 14px; font-weight: 700; font-family: 'Inter', sans-serif;
+            cursor: pointer; white-space: nowrap;
+            transition: background .2s, transform .2s;
+        }
+        .track-btn:hover { background: #b5080f; transform: translateY(-1px); }
+
+        /* MAIN */
+        .main { max-width: 1100px; margin: 0 auto; padding: 64px 40px; }
+
+        /* Quick Topics */
+        .section-label { font-size: 11px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; color: var(--primary); margin-bottom: 12px; }
+        .section-title { font-size: 26px; font-weight: 800; letter-spacing: -.5px; margin-bottom: 32px; }
+
+        .topics {
+            display: grid; grid-template-columns: repeat(4, 1fr);
+            gap: 16px; margin-bottom: 72px;
+        }
+
+        .topic-card {
+            background: var(--gray-100); border: 1.5px solid var(--gray-200);
+            border-radius: 16px; padding: 28px 22px;
+            transition: border-color .25s, box-shadow .25s, transform .25s;
+            cursor: pointer; text-decoration: none; color: inherit;
+            display: block;
+        }
+        .topic-card:hover {
+            border-color: var(--primary);
+            box-shadow: 0 6px 20px rgba(227,10,23,.07);
+            transform: translateY(-2px);
+        }
+        .topic-icon {
+            width: 46px; height: 46px; border-radius: 12px;
+            background: white; border: 1.5px solid var(--gray-200);
+            display: flex; align-items: center; justify-content: center;
+            color: var(--primary); margin-bottom: 16px;
+        }
+        .topic-card h3 { font-size: 14px; font-weight: 700; margin-bottom: 6px; }
+        .topic-card p { font-size: 13px; color: var(--gray-600); line-height: 1.6; }
+
+        /* Info Blocks (Shipping / Return / Damage) */
+        .info-grid {
+            display: grid; grid-template-columns: 1fr 1fr;
+            gap: 24px; margin-bottom: 72px;
+        }
+
+        .info-block {
+            border: 1.5px solid var(--gray-200);
+            border-radius: 16px; padding: 32px 28px;
+        }
+        .info-block-header {
+            display: flex; align-items: center; gap: 14px;
+            margin-bottom: 20px;
+        }
+        .info-block-icon {
+            width: 44px; height: 44px; border-radius: 12px;
+            background: var(--gray-100);
+            display: flex; align-items: center; justify-content: center;
+            color: var(--primary); flex-shrink: 0;
+        }
+        .info-block h3 { font-size: 16px; font-weight: 700; }
+        .info-block ul { list-style: none; display: flex; flex-direction: column; gap: 10px; }
+        .info-block li {
+            font-size: 14px; color: var(--gray-600);
+            display: flex; align-items: flex-start; gap: 10px; line-height: 1.6;
+        }
+        .info-block li::before {
+            content: '';
+            width: 5px; height: 5px; border-radius: 50%;
+            background: var(--primary); margin-top: 8px; flex-shrink: 0;
+        }
+
+        /* FAQ */
+        .faq-list { display: flex; flex-direction: column; gap: 4px; margin-bottom: 72px; }
+
+        .faq-item {
+            border: 1.5px solid var(--gray-200);
+            border-radius: 14px; overflow: hidden;
+            transition: border-color .25s;
+        }
+        .faq-item.open { border-color: rgba(227,10,23,.25); }
+
+        .faq-q {
+            width: 100%; padding: 18px 22px;
+            display: flex; align-items: center; justify-content: space-between; gap: 16px;
+            background: none; border: none; cursor: pointer; text-align: left;
+            font-family: 'Inter', sans-serif; font-size: 14px; font-weight: 600; color: var(--secondary);
+            transition: background .2s;
+        }
+        .faq-q:hover { background: var(--gray-100); }
+        .faq-item.open .faq-q { background: rgba(227,10,23,.04); color: var(--primary); }
+
+        .faq-arrow { transition: transform .35s var(--ease); flex-shrink: 0; }
+        .faq-item.open .faq-arrow { transform: rotate(180deg); }
+
+        .faq-a {
+            max-height: 0; overflow: hidden;
+            transition: max-height .4s var(--ease), padding .4s var(--ease);
+            font-size: 14px; color: var(--gray-600); line-height: 1.75;
+            padding: 0 22px;
+        }
+        .faq-item.open .faq-a { max-height: 200px; padding: 4px 22px 20px; }
+
+        /* Contact Form */
+        .contact-grid {
+            display: grid; grid-template-columns: 1fr 1.4fr; gap: 40px;
+        }
+
+        .contact-info { display: flex; flex-direction: column; gap: 20px; }
+
+        .contact-card {
+            background: var(--gray-100); border: 1.5px solid var(--gray-200);
+            border-radius: 14px; padding: 22px 20px;
+            display: flex; align-items: center; gap: 16px;
+        }
+        .contact-card-icon {
+            width: 42px; height: 42px; border-radius: 12px;
+            background: white; border: 1.5px solid var(--gray-200);
+            display: flex; align-items: center; justify-content: center;
+            color: var(--primary); flex-shrink: 0;
+        }
+        .contact-card-label { font-size: 11px; font-weight: 700; letter-spacing: 1px; text-transform: uppercase; color: var(--gray-400); margin-bottom: 4px; }
+        .contact-card-value { font-size: 14px; font-weight: 600; color: var(--secondary); }
+        .contact-card-sub { font-size: 12px; color: var(--gray-400); margin-top: 2px; }
+
+        .form-card {
+            background: var(--gray-100); border: 1.5px solid var(--gray-200);
+            border-radius: 16px; padding: 32px 28px;
+        }
+        .form-card h3 { font-size: 18px; font-weight: 800; margin-bottom: 22px; letter-spacing: -.3px; }
+
+        .form-row-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+        .form-group { margin-bottom: 14px; }
+        .form-label { display: block; font-size: 12px; font-weight: 600; color: var(--secondary); margin-bottom: 6px; }
+        .form-input, .form-select, .form-textarea {
+            width: 100%; padding: 11px 14px;
+            border: 1.5px solid var(--gray-200); border-radius: 10px;
+            font-family: 'Inter', sans-serif; font-size: 14px; font-weight: 500;
+            color: var(--secondary); background: white; outline: none;
+            transition: border-color .25s;
+        }
+        .form-input:focus, .form-select:focus, .form-textarea:focus { border-color: var(--primary); }
+        .form-textarea { resize: vertical; min-height: 100px; }
+        .form-select { cursor: pointer; }
+
+        .btn-submit {
+            width: 100%; padding: 13px;
+            background: var(--secondary); color: white;
+            border: none; border-radius: 12px;
+            font-family: 'Inter', sans-serif; font-size: 14px; font-weight: 700;
+            cursor: pointer;
+            display: flex; align-items: center; justify-content: center; gap: 8px;
+            transition: background .25s, transform .25s;
+        }
+        .btn-submit:hover { background: var(--primary); transform: translateY(-1px); }
+
+        /* FOOTER */
+        .footer {
+            background: var(--secondary); padding: 32px 60px;
+            display: flex; align-items: center; justify-content: space-between;
+            margin-top: 80px;
+        }
+        .footer-brand { font-size: 15px; font-weight: 800; color: white; }
+        .footer-brand span { color: var(--primary); }
+        .footer-copy { font-size: 13px; color: rgba(255,255,255,.3); }
+
+        @media (max-width: 900px) {
+            .topics { grid-template-columns: repeat(2, 1fr); }
+            .info-grid { grid-template-columns: 1fr; }
+            .contact-grid { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+
+<!-- Navbar -->
+<nav class="navbar">
+    <a href="index.html" class="nav-brand">Tunçay <span>Sandalye</span></a>
+    <a href="index.html" class="nav-back">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="15" height="15"><line x1="19" y1="12" x2="5" y2="12"/><polyline points="12 19 5 12 12 5"/></svg>
+        Ana Sayfaya Dön
+    </a>
+</nav>
+
+<!-- Hero -->
+<section class="hero">
+    <div class="hero-tag">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="11" height="11"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+        Destek Merkezi
+    </div>
+    <h1>Nasıl <span>yardımcı</span> olabiliriz?</h1>
+    <p>Siparişleriniz, kargonuz veya ürünlerinizle ilgili her konuda yanınızdayız.</p>
+</section>
+
+<!-- Order Track -->
+<div class="track-bar">
+    <p>Sipariş Takibi — Sipariş numaranızı girin</p>
+    <div class="track-form">
+        <input type="text" class="track-input" placeholder="Sipariş numarası (örn: TNC-2024-00123)" id="order-no">
+        <button class="track-btn" onclick="trackOrder()">Sorgula</button>
+    </div>
+</div>
+
+<div class="main">
+
+    <!-- Quick Topics -->
+    <div class="section-label">Konular</div>
+    <div class="section-title">Ne konusunda yardım istersiniz?</div>
+    <div class="topics">
+        <a href="#kargo" class="topic-card">
+            <div class="topic-icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="20" height="20"><rect x="1" y="3" width="15" height="13"/><polygon points="16 8 20 8 23 11 23 16 16 16 16 8"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></svg>
+            </div>
+            <h3>Kargo & Teslimat</h3>
+            <p>Teslimat süreleri ve kargo takibi hakkında bilgi alın.</p>
+        </a>
+        <a href="#iade" class="topic-card">
+            <div class="topic-icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="20" height="20"><polyline points="1 4 1 10 7 10"/><polyline points="23 20 23 14 17 14"/><path d="M20.49 9A9 9 0 0 0 5.64 5.64L1 10m22 4l-4.64 4.36A9 9 0 0 1 3.51 15"/></svg>
+            </div>
+            <h3>İade & Değişim</h3>
+            <p>İade koşulları ve nasıl iade başlatacağınızı öğrenin.</p>
+        </a>
+        <a href="#hasar" class="topic-card">
+            <div class="topic-icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="20" height="20"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
+            </div>
+            <h3>Hasarlı Ürün</h3>
+            <p>Hasarlı veya eksik gelen ürünler için bildirin.</p>
+        </a>
+        <a href="#iletisim" class="topic-card">
+            <div class="topic-icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="20" height="20"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.6 1.2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 8.91a16 16 0 0 0 6 6l.91-.91a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7a2 2 0 0 1 1.72 2.02z"/></svg>
+            </div>
+            <h3>Bize Yazın</h3>
+            <p>Sorularınız için destek formumuzu kullanın.</p>
+        </a>
+    </div>
+
+    <!-- Info Blocks -->
+    <div class="info-grid" id="kargo">
+        <div class="info-block">
+            <div class="info-block-header">
+                <div class="info-block-icon">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="20" height="20"><rect x="1" y="3" width="15" height="13"/><polygon points="16 8 20 8 23 11 23 16 16 16 16 8"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></svg>
+                </div>
+                <h3>Kargo & Teslimat</h3>
+            </div>
+            <ul>
+                <li>Siparişler onaydan itibaren <strong>3–7 iş günü</strong> içinde kargoya verilir.</li>
+                <li>Özel üretim ve sipariş ürünlerde bu süre <strong>15–25 iş günündür.</strong></li>
+                <li>₺2.000 ve üzeri alışverişlerde kargo <strong>ücretsizdir.</strong></li>
+                <li>Teslimat öncesinde SMS ve e-posta ile bilgilendirme yapılır.</li>
+                <li>Kargo takibinizi sipariş numaranızla yukarıdaki araçla yapabilirsiniz.</li>
+            </ul>
+        </div>
+
+        <div class="info-block" id="iade">
+            <div class="info-block-header">
+                <div class="info-block-icon">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="20" height="20"><polyline points="1 4 1 10 7 10"/><polyline points="23 20 23 14 17 14"/><path d="M20.49 9A9 9 0 0 0 5.64 5.64L1 10m22 4l-4.64 4.36A9 9 0 0 1 3.51 15"/></svg>
+                </div>
+                <h3>İade & Değişim</h3>
+            </div>
+            <ul>
+                <li>Ürünler teslim tarihinden itibaren <strong>14 gün</strong> içinde iade edilebilir.</li>
+                <li>Orijinal ambalajında, kullanılmamış ürünler için geçerlidir.</li>
+                <li>Özel ölçü / renk siparişleri <strong>iade kapsamı dışındadır.</strong></li>
+                <li>İade talebi için aşağıdaki form veya telefon yeterlidir.</li>
+                <li>Onaylanan iadeler <strong>5–10 iş günü</strong> içinde ödenir.</li>
+            </ul>
+        </div>
+
+        <div class="info-block" id="hasar">
+            <div class="info-block-header">
+                <div class="info-block-icon">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="20" height="20"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
+                </div>
+                <h3>Hasarlı / Eksik Ürün</h3>
+            </div>
+            <ul>
+                <li>Hasarlı kargo için ürünü <strong>kargocu eşliğinde tutanak tutarak</strong> teslim alın.</li>
+                <li>Fotoğraflı bildiriminizi 24 saat içinde bize iletmeniz gerekmektedir.</li>
+                <li>Eksik parça için sipariş numaranız ve eksik parça adıyla bize yazın.</li>
+                <li>Garanti kapsamındaki arızalar için yetkili servisimiz yönlendirme yapar.</li>
+            </ul>
+        </div>
+
+        <div class="info-block">
+            <div class="info-block-header">
+                <div class="info-block-icon">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="20" height="20"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+                </div>
+                <h3>Garanti Koşulları</h3>
+            </div>
+            <ul>
+                <li>Tüm ürünler <strong>2 yıl üretici garantisi</strong> kapsamındadır.</li>
+                <li>Normal kullanım dışı aşınma ve yırtılmalar garanti dışıdır.</li>
+                <li>Garanti belgesi ürünle birlikte kargo ile gönderilir.</li>
+                <li>Garanti başvurusu için fatura ve garanti belgesi gereklidir.</li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- FAQ -->
+    <div class="section-label">Sık Sorulanlar</div>
+    <div class="section-title">Merak edilenler</div>
+    <div class="faq-list" id="faq">
+
+        <div class="faq-item">
+            <button class="faq-q" onclick="toggleFaq(this)">
+                Siparişimi nasıl iptal edebilirim?
+                <svg class="faq-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="18" height="18"><polyline points="6 9 12 15 18 9"/></svg>
+            </button>
+            <div class="faq-a">Siparişiniz kargoya verilmeden önce müşteri hizmetlerimizi arayarak veya e-posta göndererek iptal edebilirsiniz. Kargoya verilen siparişlerde iade sürecini başlatmanız gerekmektedir.</div>
+        </div>
+
+        <div class="faq-item">
+            <button class="faq-q" onclick="toggleFaq(this)">
+                Kargo ücreti ne kadar?
+                <svg class="faq-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="18" height="18"><polyline points="6 9 12 15 18 9"/></svg>
+            </button>
+            <div class="faq-a">₺2.000 ve üzeri siparişlerde kargo tamamen ücretsizdir. Altındaki tutarlar için sabit ₺149 kargo ücreti uygulanmaktadır.</div>
+        </div>
+
+        <div class="faq-item">
+            <button class="faq-q" onclick="toggleFaq(this)">
+                Farklı renk veya kumaşla sipariş verebilir miyim?
+                <svg class="faq-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="18" height="18"><polyline points="6 9 12 15 18 9"/></svg>
+            </button>
+            <div class="faq-a">Evet! Tüm ürünlerimizde geniş kumaş ve renk seçeneği sunulmaktadır. Özel sipariş için bize yazın, size numune ve fiyat teklifi iletilir.</div>
+        </div>
+
+        <div class="faq-item">
+            <button class="faq-q" onclick="toggleFaq(this)">
+                Ürünü monte etmem gerekiyor mu?
+                <svg class="faq-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="18" height="18"><polyline points="6 9 12 15 18 9"/></svg>
+            </button>
+            <div class="faq-a">Bazı ürünler kısmen sökülerek kargoya verilmektedir. Kolay montaj kılavuzu ürünle birlikte gelir. İstanbul ve çevre illerde ücretli yerinde montaj hizmetimiz mevcuttur.</div>
+        </div>
+
+        <div class="faq-item">
+            <button class="faq-q" onclick="toggleFaq(this)">
+                Kapıda ödeme seçeneği var mı?
+                <svg class="faq-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="18" height="18"><polyline points="6 9 12 15 18 9"/></svg>
+            </button>
+            <div class="faq-a">Evet, kapıda nakit veya POS ödeme seçeneği sunan anlaşmalı kargo firmalarımızla kapıda ödeme yapabilirsiniz. Taksit seçenekleri için online ödeme tercih edilmelidir.</div>
+        </div>
+
+        <div class="faq-item">
+            <button class="faq-q" onclick="toggleFaq(this)">
+                Fatura kesilecek mi?
+                <svg class="faq-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="18" height="18"><polyline points="6 9 12 15 18 9"/></svg>
+            </button>
+            <div class="faq-a">Tüm alışverişleriniz için e-fatura ya da basılı fatura düzenlenmektedir. Kurumsal fatura için sipariş sırasında vergi numaranızı belirtmeniz yeterlidir.</div>
+        </div>
+
+    </div>
+
+    <!-- Contact -->
+    <div class="section-label" id="iletisim" style="padding-top:8px">İletişim</div>
+    <div class="section-title">Size ulaşalım</div>
+    <div class="contact-grid">
+
+        <div class="contact-info">
+            <div class="contact-card">
+                <div class="contact-card-icon">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="18" height="18"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.6 1.2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 8.91a16 16 0 0 0 6 6l.91-.91a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7a2 2 0 0 1 1.72 2.02z"/></svg>
+                </div>
+                <div>
+                    <div class="contact-card-label">Telefon</div>
+                    <div class="contact-card-value">0212 000 00 00</div>
+                    <div class="contact-card-sub">Hft. içi 09:00 – 18:00</div>
+                </div>
+            </div>
+            <div class="contact-card">
+                <div class="contact-card-icon">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="18" height="18"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+                </div>
+                <div>
+                    <div class="contact-card-label">E-posta</div>
+                    <div class="contact-card-value">destek@tuncaysandalye.com</div>
+                    <div class="contact-card-sub">24 saat içinde yanıt verilir</div>
+                </div>
+            </div>
+            <div class="contact-card">
+                <div class="contact-card-icon">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="18" height="18"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+                </div>
+                <div>
+                    <div class="contact-card-label">Adres</div>
+                    <div class="contact-card-value">İstanbul, Türkiye</div>
+                    <div class="contact-card-sub">Showroom ziyareti için randevu alınız</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="form-card">
+            <h3>Destek Talebi Oluştur</h3>
+            <div class="form-row-2">
+                <div class="form-group">
+                    <label class="form-label">Ad Soyad</label>
+                    <input type="text" class="form-input" placeholder="Adınız Soyadınız">
+                </div>
+                <div class="form-group">
+                    <label class="form-label">E-posta</label>
+                    <input type="email" class="form-input" placeholder="ornek@email.com">
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="form-label">Sipariş No (varsa)</label>
+                <input type="text" class="form-input" placeholder="TNC-2024-00000">
+            </div>
+            <div class="form-group">
+                <label class="form-label">Konu</label>
+                <select class="form-select">
+                    <option value="">Konu seçin</option>
+                    <option>Kargo / Teslimat</option>
+                    <option>İade / Değişim</option>
+                    <option>Hasarlı Ürün</option>
+                    <option>Sipariş İptali</option>
+                    <option>Garanti</option>
+                    <option>Genel Soru</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label class="form-label">Mesajınız</label>
+                <textarea class="form-textarea" placeholder="Sorununuzu veya talebinizi kısaca açıklayın..."></textarea>
+            </div>
+            <button class="btn-submit" onclick="submitForm()">
+                Gönder
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" width="15" height="15"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
+            </button>
+        </div>
+
+    </div>
+</div>
+
+<!-- Footer -->
+<footer class="footer">
+    <span class="footer-brand">Tunçay <span>Sandalye</span></span>
+    <span class="footer-copy">© 2024 Tüm hakları saklıdır.</span>
+</footer>
+
+<script>
+    function toggleFaq(btn) {
+        const item = btn.parentElement;
+        const isOpen = item.classList.contains('open');
+        document.querySelectorAll('.faq-item').forEach(i => i.classList.remove('open'));
+        if (!isOpen) item.classList.add('open');
+    }
+
+    function trackOrder() {
+        const val = document.getElementById('order-no').value.trim();
+        if (!val) { alert('Lütfen sipariş numaranızı girin.'); return; }
+        alert(`"${val}" numaralı siparişiniz sorgulanıyor...\n(Bu alanda gerçek API entegrasyonu yapılacaktır.)`);
+    }
+
+    function submitForm() {
+        alert('Destek talebiniz alındı! En kısa sürede size dönüş yapacağız.');
+    }
+</script>
+</body>
+</html>

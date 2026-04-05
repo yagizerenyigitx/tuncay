@@ -1,0 +1,772 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ürünler | Tunçay Sandalye</title>
+    <meta name="description" content="Tunçay Sandalye premium sandalye koleksiyonu. Yönetici koltukları, yemek sandalyeleri, bekleme koltukları ve daha fazlası.">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+        :root {
+            --primary: #E30A17;
+            --primary-dark: #b5080f;
+            --secondary: #1a1a1a;
+            --gray-100: #f7f7f7;
+            --gray-200: #ebebeb;
+            --gray-400: #aaa;
+            --gray-600: #666;
+            --ease: cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            color: var(--secondary);
+            background: var(--gray-100);
+        }
+
+        /* ── NAVBAR ── */
+        .navbar {
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            background: white;
+            border-bottom: 1px solid var(--gray-200);
+            padding: 0 50px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            height: 65px;
+        }
+
+        .nav-brand {
+            font-size: 18px;
+            font-weight: 800;
+            color: var(--secondary);
+            text-decoration: none;
+        }
+        .nav-brand span { color: var(--primary); }
+
+        .nav-links {
+            display: flex;
+            gap: 32px;
+        }
+
+        .nav-links a {
+            font-size: 13px;
+            font-weight: 600;
+            color: var(--gray-600);
+            text-decoration: none;
+            text-transform: uppercase;
+            letter-spacing: 0.7px;
+            transition: color 0.2s;
+        }
+        .nav-links a:hover, .nav-links a.active { color: var(--primary); }
+
+        .nav-actions {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+        }
+
+        .nav-actions a {
+            font-size: 13px;
+            font-weight: 600;
+            color: var(--gray-600);
+            text-decoration: none;
+            transition: color 0.2s;
+        }
+        .nav-actions a:hover { color: var(--primary); }
+
+        /* ── PAGE HEADER ── */
+        .page-header {
+            background: white;
+            border-bottom: 1px solid var(--gray-200);
+            padding: 32px 50px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .breadcrumb {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 13px;
+            color: var(--gray-400);
+            margin-bottom: 8px;
+        }
+
+        .breadcrumb a { color: var(--gray-400); text-decoration: none; transition: color 0.2s; }
+        .breadcrumb a:hover { color: var(--primary); }
+        .breadcrumb svg { width: 10px; height: 10px; }
+
+        .page-header h1 {
+            font-size: 26px;
+            font-weight: 800;
+            letter-spacing: -0.5px;
+        }
+
+        .result-count {
+            font-size: 13px;
+            color: var(--gray-400);
+            font-weight: 500;
+        }
+
+        /* ── LAYOUT ── */
+        .layout {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 32px 50px;
+            display: grid;
+            grid-template-columns: 260px 1fr;
+            gap: 32px;
+            align-items: start;
+        }
+
+        /* ── SIDEBAR ── */
+        .sidebar {
+            background: white;
+            border-radius: 16px;
+            border: 1px solid var(--gray-200);
+            overflow: hidden;
+            position: sticky;
+            top: 97px;
+        }
+
+        .sidebar-section {
+            padding: 22px 24px;
+            border-bottom: 1px solid var(--gray-200);
+        }
+        .sidebar-section:last-child { border-bottom: none; }
+
+        .sidebar-title {
+            font-size: 11px;
+            font-weight: 700;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            color: var(--gray-400);
+            margin-bottom: 16px;
+        }
+
+        /* Category list */
+        .cat-list { list-style: none; display: flex; flex-direction: column; gap: 2px; }
+
+        .cat-item {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 9px 12px;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: all 0.2s;
+            font-size: 14px;
+            font-weight: 500;
+            color: var(--secondary);
+        }
+
+        .cat-item:hover { background: var(--gray-100); }
+        .cat-item.active { background: rgba(227,10,23,0.07); color: var(--primary); font-weight: 600; }
+
+        .cat-count {
+            font-size: 12px;
+            color: var(--gray-400);
+            font-weight: 500;
+        }
+        .cat-item.active .cat-count { color: var(--primary); }
+
+        /* Price Range */
+        .price-inputs {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 8px;
+        }
+
+        .price-input {
+            padding: 9px 12px;
+            border: 1.5px solid var(--gray-200);
+            border-radius: 10px;
+            font-size: 13px;
+            font-family: 'Inter', sans-serif;
+            font-weight: 500;
+            outline: none;
+            transition: border-color 0.2s;
+            width: 100%;
+        }
+        .price-input:focus { border-color: var(--primary); }
+
+        /* Checkboxes */
+        .check-list { display: flex; flex-direction: column; gap: 10px; }
+
+        .check-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            cursor: pointer;
+        }
+        .check-item input { accent-color: var(--primary); cursor: pointer; width: 16px; height: 16px; }
+        .check-item span { font-size: 13px; font-weight: 500; }
+
+        /* Color dots */
+        .color-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .color-dot {
+            width: 28px;
+            height: 28px;
+            border-radius: 50%;
+            border: 2px solid transparent;
+            cursor: pointer;
+            transition: all 0.2s;
+            position: relative;
+        }
+        .color-dot:hover { transform: scale(1.15); }
+        .color-dot.active { border-color: var(--secondary); }
+        .color-dot.active::after {
+            content: '✓';
+            position: absolute;
+            inset: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 11px;
+            color: white;
+            font-weight: 700;
+        }
+
+        /* Clear btn */
+        .btn-clear {
+            width: 100%;
+            padding: 10px;
+            border: 1.5px solid var(--gray-200);
+            border-radius: 10px;
+            background: none;
+            font-family: 'Inter', sans-serif;
+            font-size: 13px;
+            font-weight: 600;
+            color: var(--gray-600);
+            cursor: pointer;
+            transition: all 0.2s;
+            margin-top: 4px;
+        }
+        .btn-clear:hover { border-color: var(--primary); color: var(--primary); }
+
+        /* ── PRODUCT GRID ── */
+        .products-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 20px;
+        }
+
+        .sort-select {
+            padding: 9px 14px;
+            border: 1.5px solid var(--gray-200);
+            border-radius: 10px;
+            font-family: 'Inter', sans-serif;
+            font-size: 13px;
+            font-weight: 500;
+            color: var(--secondary);
+            background: white;
+            outline: none;
+            cursor: pointer;
+            transition: border-color 0.2s;
+        }
+        .sort-select:focus { border-color: var(--primary); }
+
+        .view-toggles {
+            display: flex;
+            gap: 4px;
+        }
+        .view-btn {
+            padding: 8px;
+            border: 1.5px solid var(--gray-200);
+            border-radius: 8px;
+            background: white;
+            cursor: pointer;
+            color: var(--gray-400);
+            display: flex;
+            transition: all 0.2s;
+        }
+        .view-btn.active, .view-btn:hover { border-color: var(--secondary); color: var(--secondary); }
+
+        .products-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+        }
+
+        .products-grid.view-list {
+            grid-template-columns: 1fr;
+        }
+
+        /* Product Card */
+        .product-card {
+            background: white;
+            border-radius: 16px;
+            border: 1px solid var(--gray-200);
+            overflow: hidden;
+            transition: box-shadow 0.3s var(--ease), transform 0.3s var(--ease);
+            cursor: pointer;
+        }
+        .product-card:hover {
+            box-shadow: 0 12px 32px rgba(0,0,0,0.09);
+            transform: translateY(-3px);
+        }
+
+        .product-img {
+            position: relative;
+            background: var(--gray-100);
+            aspect-ratio: 1;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .product-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            padding: 20px;
+            transition: transform 0.5s var(--ease);
+        }
+        .product-card:hover .product-img img { transform: scale(1.05); }
+
+        .product-badge {
+            position: absolute;
+            top: 12px;
+            left: 12px;
+            background: var(--primary);
+            color: white;
+            font-size: 11px;
+            font-weight: 700;
+            padding: 4px 10px;
+            border-radius: 20px;
+        }
+
+        .product-badge.new { background: var(--secondary); }
+
+        .product-wishlist {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            width: 34px;
+            height: 34px;
+            background: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: none;
+            cursor: pointer;
+            color: var(--gray-400);
+            box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+            transition: all 0.2s;
+        }
+        .product-wishlist:hover { color: var(--primary); transform: scale(1.1); }
+
+        .product-info {
+            padding: 16px 18px 18px;
+        }
+
+        .product-category {
+            font-size: 11px;
+            font-weight: 600;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            color: var(--gray-400);
+            margin-bottom: 6px;
+        }
+
+        .product-name {
+            font-size: 15px;
+            font-weight: 700;
+            margin-bottom: 12px;
+            line-height: 1.3;
+        }
+
+        .product-price-row {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .product-prices {
+            display: flex;
+            align-items: baseline;
+            gap: 8px;
+        }
+
+        .product-price {
+            font-size: 17px;
+            font-weight: 800;
+            color: var(--secondary);
+        }
+
+        .product-old-price {
+            font-size: 13px;
+            color: var(--gray-400);
+            text-decoration: line-through;
+            font-weight: 400;
+        }
+
+        .btn-add {
+            padding: 8px 14px;
+            background: var(--secondary);
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 12px;
+            font-weight: 700;
+            font-family: 'Inter', sans-serif;
+            cursor: pointer;
+            transition: background 0.2s;
+            white-space: nowrap;
+        }
+        .btn-add:hover { background: var(--primary); }
+
+        /* Pagination */
+        .pagination {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 6px;
+            margin-top: 40px;
+        }
+
+        .page-btn {
+            width: 38px;
+            height: 38px;
+            border-radius: 10px;
+            border: 1.5px solid var(--gray-200);
+            background: white;
+            font-family: 'Inter', sans-serif;
+            font-size: 14px;
+            font-weight: 600;
+            color: var(--secondary);
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.2s;
+        }
+        .page-btn:hover, .page-btn.active {
+            border-color: var(--primary);
+            color: var(--primary);
+        }
+        .page-btn.active { background: var(--primary); color: white; border-color: var(--primary); }
+
+        /* Empty state */
+        .empty {
+            grid-column: 1 / -1;
+            text-align: center;
+            padding: 60px;
+            color: var(--gray-400);
+        }
+        .empty svg { margin-bottom: 16px; }
+        .empty p { font-size: 15px; font-weight: 500; }
+
+        /* ── FOOTER ── */
+        .footer {
+            background: var(--secondary);
+            padding: 32px 50px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-top: 60px;
+        }
+        .footer-brand { font-size: 15px; font-weight: 800; color: white; }
+        .footer-brand span { color: var(--primary); }
+        .footer-copy { font-size: 13px; color: rgba(255,255,255,0.3); }
+    </style>
+</head>
+<body>
+
+<!-- Navbar -->
+<nav class="navbar">
+    <a href="index.html" class="nav-brand">Tunçay <span>Sandalye</span></a>
+    <div class="nav-links">
+        <a href="index.html">Ana Sayfa</a>
+        <a href="kurumsal.html">Kurumsal</a>
+        <a href="urunler.html" class="active">Ürünler</a>
+        <a href="#">Katalog</a>
+        <a href="#">Destek</a>
+        <a href="#">İletişim</a>
+    </div>
+    <div class="nav-actions">
+        <a href="auth.html#login">Giriş Yap</a>
+        <a href="auth.html#register">Kaydol</a>
+    </div>
+</nav>
+
+<!-- Page Header -->
+<div class="page-header">
+    <div>
+        <div class="breadcrumb">
+            <a href="index.html">Ana Sayfa</a>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 18 15 12 9 6"/></svg>
+            <span>Ürünler</span>
+        </div>
+        <h1>Tüm Ürünler</h1>
+    </div>
+    <div class="result-count" id="result-count">24 ürün listeleniyor</div>
+</div>
+
+<!-- Main Layout -->
+<div class="layout">
+
+    <!-- Sidebar -->
+    <aside class="sidebar">
+
+        <div class="sidebar-section">
+            <div class="sidebar-title">Kategori</div>
+            <ul class="cat-list" id="cat-list">
+                <li class="cat-item active" data-cat="all" onclick="filterCat(this, 'all')">
+                    <span>Tümü</span>
+                    <span class="cat-count">24</span>
+                </li>
+                <li class="cat-item" data-cat="yonetici" onclick="filterCat(this, 'yonetici')">
+                    <span>Yönetici Koltuğu</span>
+                    <span class="cat-count">8</span>
+                </li>
+                <li class="cat-item" data-cat="yemek" onclick="filterCat(this, 'yemek')">
+                    <span>Yemek Sandalyesi</span>
+                    <span class="cat-count">6</span>
+                </li>
+                <li class="cat-item" data-cat="bekleme" onclick="filterCat(this, 'bekleme')">
+                    <span>Bekleme Koltuğu</span>
+                    <span class="cat-count">5</span>
+                </li>
+                <li class="cat-item" data-cat="bar" onclick="filterCat(this, 'bar')">
+                    <span>Bar Taburesi</span>
+                    <span class="cat-count">5</span>
+                </li>
+            </ul>
+        </div>
+
+        <div class="sidebar-section">
+            <div class="sidebar-title">Fiyat Aralığı</div>
+            <div class="price-inputs">
+                <input type="number" class="price-input" placeholder="Min ₺" id="price-min">
+                <input type="number" class="price-input" placeholder="Max ₺" id="price-max">
+            </div>
+        </div>
+
+        <div class="sidebar-section">
+            <div class="sidebar-title">Malzeme</div>
+            <div class="check-list">
+                <label class="check-item">
+                    <input type="checkbox" onchange="applyFilters()"> <span>Deri</span>
+                </label>
+                <label class="check-item">
+                    <input type="checkbox" onchange="applyFilters()"> <span>Kumaş</span>
+                </label>
+                <label class="check-item">
+                    <input type="checkbox" onchange="applyFilters()"> <span>Kadife</span>
+                </label>
+                <label class="check-item">
+                    <input type="checkbox" onchange="applyFilters()"> <span>Plastik</span>
+                </label>
+            </div>
+        </div>
+
+        <div class="sidebar-section">
+            <div class="sidebar-title">Renk</div>
+            <div class="color-list">
+                <div class="color-dot" style="background:#1a1a1a" title="Siyah" onclick="toggleColor(this)"></div>
+                <div class="color-dot" style="background:#f5f0e8" title="Krem" onclick="toggleColor(this)"></div>
+                <div class="color-dot" style="background:#8c977d" title="Haki" onclick="toggleColor(this)"></div>
+                <div class="color-dot" style="background:#7b6b5a" title="Kahve" onclick="toggleColor(this)"></div>
+                <div class="color-dot" style="background:#c0c0c0" title="Gri" onclick="toggleColor(this)"></div>
+                <div class="color-dot" style="background:#E30A17" title="Kırmızı" onclick="toggleColor(this)"></div>
+                <div class="color-dot" style="background:#2c4a7c" title="Lacivert" onclick="toggleColor(this)"></div>
+                <div class="color-dot" style="background:#e8d5a3" title="Bej" onclick="toggleColor(this)"></div>
+            </div>
+        </div>
+
+        <div class="sidebar-section">
+            <button class="btn-clear" onclick="clearFilters()">Filtreleri Temizle</button>
+        </div>
+
+    </aside>
+
+    <!-- Products -->
+    <section>
+        <div class="products-header">
+            <div class="view-toggles">
+                <button class="view-btn active" id="grid-btn" onclick="setView('grid')" title="Grid">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="16" height="16"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/></svg>
+                </button>
+                <button class="view-btn" id="list-btn" onclick="setView('list')" title="Liste">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="16" height="16"><line x1="8" y1="6" x2="21" y2="6"/><line x1="8" y1="12" x2="21" y2="12"/><line x1="8" y1="18" x2="21" y2="18"/><line x1="3" y1="6" x2="3.01" y2="6"/><line x1="3" y1="12" x2="3.01" y2="12"/><line x1="3" y1="18" x2="3.01" y2="18"/></svg>
+                </button>
+            </div>
+            <select class="sort-select" id="sort-select" onchange="applyFilters()">
+                <option value="default">Varsayılan Sıralama</option>
+                <option value="price-asc">Fiyat: Düşükten Yükseğe</option>
+                <option value="price-desc">Fiyat: Yüksekten Düşüğe</option>
+                <option value="newest">En Yeniler</option>
+                <option value="discount">İndirimliler</option>
+            </select>
+        </div>
+
+        <div class="products-grid" id="products-grid">
+            <!-- Products injected by JS -->
+        </div>
+
+        <div class="pagination" id="pagination"></div>
+    </section>
+
+</div>
+
+<!-- Footer -->
+<footer class="footer">
+    <span class="footer-brand">Tunçay <span>Sandalye</span></span>
+    <span class="footer-copy">© 2024 Tüm hakları saklıdır.</span>
+</footer>
+
+<script>
+// Product Data
+const products = [
+    { id:1, name:'Keynote Sandalye', cat:'yemek', price:4199, oldPrice:5999, badge:'%30', img:'file:///C:/Users/yagiz/.gemini/antigravity/brain/dd15ce44-4a2e-4372-a808-79255ac5df8b/tuncay_product_chair_1_1775343945013.png' },
+    { id:2, name:'Leto Yönetici Koltuğu', cat:'yonetici', price:8900, oldPrice:12999, badge:'%31', img:'file:///C:/Users/yagiz/.gemini/antigravity/brain/dd15ce44-4a2e-4372-a808-79255ac5df8b/tuncay_product_chair_2_1775343957059.png' },
+    { id:3, name:'Nova Bar Taburesi', cat:'bar', price:2890, oldPrice:3800, badge:'%24', img:'file:///C:/Users/yagiz/.gemini/antigravity/brain/dd15ce44-4a2e-4372-a808-79255ac5df8b/tuncay_product_chair_3_1775343968571.png' },
+    { id:4, name:'Lounge Bekleme Koltuğu', cat:'bekleme', price:6750, oldPrice:null, badge:'YENİ', img:'file:///C:/Users/yagiz/.gemini/antigravity/brain/dd15ce44-4a2e-4372-a808-79255ac5df8b/tuncay_product_chair_4_1775343980255.png' },
+    { id:5, name:'Aria Yemek Sandalyesi', cat:'yemek', price:3200, oldPrice:4100, badge:'%22', img:'file:///C:/Users/yagiz/.gemini/antigravity/brain/dd15ce44-4a2e-4372-a808-79255ac5df8b/tuncay_product_chair_1_1775343945013.png' },
+    { id:6, name:'Executive Pro Koltuk', cat:'yonetici', price:11500, oldPrice:14000, badge:'%18', img:'file:///C:/Users/yagiz/.gemini/antigravity/brain/dd15ce44-4a2e-4372-a808-79255ac5df8b/tuncay_product_chair_2_1775343957059.png' },
+    { id:7, name:'Dome Bar Sandalyesi', cat:'bar', price:2200, oldPrice:null, badge:'YENİ', img:'file:///C:/Users/yagiz/.gemini/antigravity/brain/dd15ce44-4a2e-4372-a808-79255ac5df8b/tuncay_product_chair_3_1775343968571.png' },
+    { id:8, name:'Zen Bekleme Serisi', cat:'bekleme', price:5400, oldPrice:6800, badge:'%21', img:'file:///C:/Users/yagiz/.gemini/antigravity/brain/dd15ce44-4a2e-4372-a808-79255ac5df8b/tuncay_product_chair_4_1775343980255.png' },
+    { id:9, name:'Forma Sandalye', cat:'yemek', price:1980, oldPrice:2400, badge:'%18', img:'file:///C:/Users/yagiz/.gemini/antigravity/brain/dd15ce44-4a2e-4372-a808-79255ac5df8b/tuncay_product_chair_1_1775343945013.png' },
+    { id:10, name:'Director Koltuk', cat:'yonetici', price:9200, oldPrice:11500, badge:'%20', img:'file:///C:/Users/yagiz/.gemini/antigravity/brain/dd15ce44-4a2e-4372-a808-79255ac5df8b/tuncay_product_chair_2_1775343957059.png' },
+    { id:11, name:'Alto Bar Taburesi', cat:'bar', price:1750, oldPrice:null, badge:'YENİ', img:'file:///C:/Users/yagiz/.gemini/antigravity/brain/dd15ce44-4a2e-4372-a808-79255ac5df8b/tuncay_product_chair_3_1775343968571.png' },
+    { id:12, name:'Vega Lounge Koltuk', cat:'bekleme', price:7800, oldPrice:9400, badge:'%17', img:'file:///C:/Users/yagiz/.gemini/antigravity/brain/dd15ce44-4a2e-4372-a808-79255ac5df8b/tuncay_product_chair_4_1775343980255.png' },
+];
+
+const PER_PAGE = 9;
+let currentPage = 1;
+let activeCat = 'all';
+let currentView = 'grid';
+
+function filterCat(el, cat) {
+    document.querySelectorAll('.cat-item').forEach(i => i.classList.remove('active'));
+    el.classList.add('active');
+    activeCat = cat;
+    currentPage = 1;
+    applyFilters();
+}
+
+function applyFilters() {
+    let filtered = [...products];
+
+    // Category
+    if (activeCat !== 'all') filtered = filtered.filter(p => p.cat === activeCat);
+
+    // Price
+    const min = parseFloat(document.getElementById('price-min').value) || 0;
+    const max = parseFloat(document.getElementById('price-max').value) || Infinity;
+    filtered = filtered.filter(p => p.price >= min && p.price <= max);
+
+    // Sort
+    const sort = document.getElementById('sort-select').value;
+    if (sort === 'price-asc') filtered.sort((a,b) => a.price - b.price);
+    else if (sort === 'price-desc') filtered.sort((a,b) => b.price - a.price);
+    else if (sort === 'discount') filtered.sort((a,b) => (b.oldPrice ? b.oldPrice - b.price : 0) - (a.oldPrice ? a.oldPrice - a.price : 0));
+
+    renderProducts(filtered);
+}
+
+function renderProducts(data) {
+    const grid = document.getElementById('products-grid');
+    const start = (currentPage - 1) * PER_PAGE;
+    const paginated = data.slice(start, start + PER_PAGE);
+
+    document.getElementById('result-count').textContent = `${data.length} ürün listeleniyor`;
+
+    if (paginated.length === 0) {
+        grid.innerHTML = `<div class="empty"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" width="48" height="48"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg><p>Bu filtreye uygun ürün bulunamadı.</p></div>`;
+        document.getElementById('pagination').innerHTML = '';
+        return;
+    }
+
+    grid.innerHTML = paginated.map(p => `
+        <div class="product-card">
+            <div class="product-img">
+                ${p.badge ? `<span class="product-badge ${p.badge === 'YENİ' ? 'new' : ''}">${p.badge}</span>` : ''}
+                <button class="product-wishlist" onclick="event.stopPropagation()">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="15" height="15"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+                </button>
+                <img src="${p.img}" alt="${p.name}" onerror="this.style.opacity='0.2'">
+            </div>
+            <div class="product-info">
+                <div class="product-category">${catLabel(p.cat)}</div>
+                <div class="product-name">${p.name}</div>
+                <div class="product-price-row">
+                    <div class="product-prices">
+                        <span class="product-price">${p.price.toLocaleString('tr-TR')} ₺</span>
+                        ${p.oldPrice ? `<span class="product-old-price">${p.oldPrice.toLocaleString('tr-TR')} ₺</span>` : ''}
+                    </div>
+                    <button class="btn-add">Sepete Ekle</button>
+                </div>
+            </div>
+        </div>
+    `).join('');
+
+    renderPagination(data.length);
+}
+
+function catLabel(cat) {
+    const labels = { yonetici: 'Yönetici Koltuğu', yemek: 'Yemek Sandalyesi', bekleme: 'Bekleme Koltuğu', bar: 'Bar Taburesi' };
+    return labels[cat] || cat;
+}
+
+function renderPagination(total) {
+    const pages = Math.ceil(total / PER_PAGE);
+    const el = document.getElementById('pagination');
+    if (pages <= 1) { el.innerHTML = ''; return; }
+
+    let html = '';
+    for (let i = 1; i <= pages; i++) {
+        html += `<button class="page-btn ${i === currentPage ? 'active' : ''}" onclick="goPage(${i})">${i}</button>`;
+    }
+    el.innerHTML = html;
+}
+
+function goPage(n) {
+    currentPage = n;
+    applyFilters();
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+function setView(view) {
+    currentView = view;
+    const grid = document.getElementById('products-grid');
+    document.getElementById('grid-btn').classList.toggle('active', view === 'grid');
+    document.getElementById('list-btn').classList.toggle('active', view === 'list');
+    grid.classList.toggle('view-list', view === 'list');
+}
+
+function toggleColor(el) { el.classList.toggle('active'); }
+
+function clearFilters() {
+    activeCat = 'all';
+    document.querySelectorAll('.cat-item').forEach(i => i.classList.remove('active'));
+    document.querySelector('[data-cat="all"]').classList.add('active');
+    document.getElementById('price-min').value = '';
+    document.getElementById('price-max').value = '';
+    document.querySelectorAll('.check-item input').forEach(c => c.checked = false);
+    document.querySelectorAll('.color-dot').forEach(d => d.classList.remove('active'));
+    document.getElementById('sort-select').value = 'default';
+    currentPage = 1;
+    applyFilters();
+}
+
+// Init
+applyFilters();
+</script>
+</body>
+</html>
