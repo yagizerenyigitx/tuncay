@@ -1,0 +1,607 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tunçay Sandalye | Premium & Lüks Sandalyeler</title>
+    <meta name="description" content="Evinize ve ofisinize lüks katacak premium sandalye modelleri Tunçay Sandalye'de. Tasarım harikası koleksiyonumuzu hemen keşfedin.">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="announcement-bar">
+        <div class="marquee-content">
+            <span>🚚 Tüm Alışverişlerde Hızlı ve Güvenilir Kargo!</span>
+            <span>💳 %100 Güvenli 3D Secure Ödeme Altyapısı</span>
+            <span>🛡️ Müşteri Memnuniyeti ve Ürün Garantisi</span>
+            <span>⭐ Kalite ve Lüks Her Zaman Sizinle</span>
+            <span>🚚 Tüm Alışverişlerde Hızlı ve Güvenilir Kargo!</span>
+            <span>💳 %100 Güvenli 3D Secure Ödeme Altyapısı</span>
+            <span>🛡️ Müşteri Memnuniyeti ve Ürün Garantisi</span>
+            <span>⭐ Kalite ve Lüks Her Zaman Sizinle</span>
+        </div>
+    </div>
+    <header class="header">
+        <div class="header-container">
+            <div class="logo">
+               <img src="logo2.png.png" alt="Tunçay Sandalye" onerror="this.onerror=null;this.outerHTML='<h1>Tunçay <span>Sandalye</span></h1>';">
+            </div>
+            <nav class="nav">
+                <a href="#">Ana Sayfa</a>
+                <a href="#">Kurumsal</a>
+                <a href="#sandalye-modelleri">Ürünler</a>
+                <a href="#">Katalog</a>
+                <a href="#">Destek</a>
+                <a href="#">İletişim</a>
+            </nav>
+            <div class="header-actions">
+                <div class="search-action" id="search-btn">
+                    <button class="search-toggle-btn" aria-label="Arama Yap">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="22" height="22"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+                    </button>
+                    <div class="search-bar-inline">
+                        <input type="text" placeholder="Ürün Ara..." id="search-input-inline">
+                        <button class="close-inline-search" id="close-inline-search" aria-label="Aramayı Kapat">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="18" height="18"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+                        </button>
+                    </div>
+                </div>
+                <div class="account-action" id="account-btn">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="22" height="22"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>
+                    <span>Hesap</span>
+                    <svg viewBox="0 0 24 24" fill="none" class="caret" stroke="currentColor" stroke-width="2" width="16" height="16"><polyline points="6 9 12 15 18 9"></polyline></svg>
+                    
+                    <!-- Account Dropdown Menu -->
+                    <div class="account-dropdown" id="account-dropdown">
+                        <a href="#">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="16" height="16"><path d="M15 3h4a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2h-4"/><polyline points="10 17 15 12 10 7"/><line x1="15" y1="12" x2="3" y2="12"/></svg>
+                            Giriş Yap
+                        </a>
+                        <a href="#">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="16" height="16"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/><line x1="12" y1="11" x2="12" y2="17"/><line x1="9" y1="14" x2="15" y2="14"/></svg>
+                            Kaydol
+                        </a>
+                    </div>
+                </div>
+                <div class="divider"></div>
+                <div class="cart-action" id="cart-btn">
+                    <div class="cart-icon-wrapper">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="22" height="22"><circle cx="9" cy="21" r="1"></circle><circle cx="20" cy="21" r="1"></circle><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path></svg>
+                        <span class="cart-badge" id="cart-badge">0</span>
+                    </div>
+                    <span id="cart-price">₺ 0,00</span>
+                    
+                    <!-- Cart Dropdown -->
+                    <div class="cart-dropdown" id="cart-dropdown">
+                        <div class="cart-dropdown-header">
+                            <span id="cart-dropdown-title">Sepetim (0 Ürün)</span>
+                            <button class="close-cart-btn" id="close-cart">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="18" height="18"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+                            </button>
+                        </div>
+                        <div class="cart-dropdown-body">
+                            <!-- Empty Cart State -->
+                            <div class="empty-cart-state" id="empty-cart-state">
+                                <div class="empty-icon">
+                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" width="64" height="64"><circle cx="9" cy="21" r="1"></circle><circle cx="20" cy="21" r="1"></circle><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path></svg>
+                                </div>
+                                <h3>Sepetiniz Boş</h3>
+                                <p>Hemen alışverişe başlayın!</p>
+                            </div>
+
+                            <!-- Filled Cart State -->
+                            <div class="filled-cart-state" id="filled-cart-state" style="display: none;">
+                                <div class="cart-items-list" id="cart-items-list">
+                                    <!-- Dynamic items will be injected here -->
+                                </div>
+                                <div class="cart-summary">
+                                    <div class="summary-line">
+                                        <span>Ara Toplam</span>
+                                        <span id="cart-subtotal">₺ 0,00</span>
+                                    </div>
+                                </div>
+                                <div class="cart-footer-actions">
+                                    <button class="cart-btn-secondary">Sepete Git</button>
+                                    <button class="cart-btn-primary">Hemen Satın Al</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <section class="hero fade-in">
+            <div class="hero-bg-text">TUNÇAY</div>
+            <div class="hero-glow"></div>
+            
+            <div class="hero-center">
+                <img src="benimresim.png.png" alt="Tunçay Sandalye Öne Çıkan Ürün">
+            </div>
+
+            <div class="hero-content">
+                <h2>Lüksün ve Konforun <br><span class="text-accent">Yeni Boyutu</span></h2>
+                <p>Eşsiz tasarım, üstün el işçiliği ve maksimum konfor. Yaşam alanlarınızı baştan yaratan özel koleksiyonumuzla tanışın.</p>
+                <div class="hero-buttons">
+                    <button class="btn-primary">Koleksiyonu Keşfet</button>
+                    <button class="btn-secondary">İletişime Geç</button>
+                </div>
+            </div>
+        </section>
+
+        <section id="ozellikler" class="features-section fade-in">
+            <div class="features-grid">
+                <div class="feature">
+                    <div class="feature-icon">
+                        <svg viewBox="0 0 24 24" width="32" height="32" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M6 3h12l4 6-10 13L2 9Z"></path></svg>
+                    </div>
+                    <h3>Zarif Tasarım</h3>
+                    <p>İtalyan esintili, zamansız ve modern vizyona sahip minimal çizgiler.</p>
+                </div>
+                <div class="feature">
+                    <div class="feature-icon">
+                        <svg viewBox="0 0 24 24" width="32" height="32" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"></path><line x1="7" y1="7" x2="7.01" y2="7"></line></svg>
+                    </div>
+                    <h3>Ergonomik Konfor</h3>
+                    <p>Vücudunuzun doğal duruşunu saran, eşsiz ve uzun süreli anatomik destek.</p>
+                </div>
+                <div class="feature">
+                    <div class="feature-icon">
+                        <svg viewBox="0 0 24 24" width="32" height="32" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="13.5" cy="6.5" r=".5" fill="currentColor"></circle><circle cx="17.5" cy="10.5" r=".5" fill="currentColor"></circle><circle cx="8.5" cy="7.5" r=".5" fill="currentColor"></circle><circle cx="6.5" cy="12.5" r=".5" fill="currentColor"></circle><path d="M12 2C6.5 2 2 6.5 2 12s4.5 10 10 10c.926 0 1.648-.746 1.648-1.688 0-.437-.18-.835-.437-1.125-.29-.289-.438-.652-.438-1.125a1.64 1.64 0 0 1 1.668-1.668h1.996c3.051 0 5.555-2.503 5.555-5.554C21.992 6.012 17.5 2 12 2z"></path></svg>
+                    </div>
+                    <h3>Sınırsız Özelleştirme</h3>
+                    <p>Geniş kumaş ve doku yelpazemizle, hayalinizdeki tasarımı mekanınıza özel şekillendirin.</p>
+                </div>
+                <div class="feature">
+                    <div class="feature-icon">
+                        <svg viewBox="0 0 24 24" width="32" height="32" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="1" y="3" width="15" height="13"></rect><polygon points="16 8 20 8 23 11 23 16 16 16 16 8"></polygon><circle cx="5.5" cy="18.5" r="2.5"></circle><circle cx="18.5" cy="18.5" r="2.5"></circle></svg>
+                    </div>
+                    <h3>Güvenli Teslimat</h3>
+                    <p>Ürünleriniz özenle paketlenip, özel nakliye ağıyla adresinize hasarsız ulaştırılır.</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="koleksiyon" class="favorites-section fade-in">
+            <div class="minimal-section-title">
+                <h2>Favori Seçimler</h2>
+            </div>
+            
+            <div class="fav-carousel-viewport">
+                <div class="fav-carousel-track" id="fav-track">
+                    <!-- Page 1 -->
+                    <div class="fav-page">
+                        <div class="minimal-product-grid">
+                            <!-- Product 1 -->
+                            <div class="product-card minimal-card">
+                                <div class="product-image minimal-image">
+                                    <span class="discount-badge">%30</span>
+                                    <img src="file:///C:/Users/yagiz/.gemini/antigravity/brain/dd15ce44-4a2e-4372-a808-79255ac5df8b/tuncay_product_chair_1_1775343945013.png" alt="Tunçay Sandalye Keynote">
+                                    <button class="btn-add hover-btn">Sepete Ekle</button>
+                                </div>
+                                <div class="product-info minimal-info">
+                                    <div class="color-dots">
+                                        <span class="dot" style="background-color: #8c977d;"></span>
+                                    </div>
+                                    <h3 class="product-title">Tunçay Sandalye - Keynote</h3>
+                                    <span class="product-code">Ürün Kodu: 192300101</span>
+                                    <div class="price-wrapper">
+                                        <span class="old-price">₺ 5.999,00</span>
+                                        <span class="price new-price">4.199 ₺</span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Product 2 -->
+                            <div class="product-card minimal-card">
+                                <div class="product-image minimal-image">
+                                    <span class="discount-badge">%30</span>
+                                    <img src="file:///C:/Users/yagiz/.gemini/antigravity/brain/dd15ce44-4a2e-4372-a808-79255ac5df8b/tuncay_product_chair_2_1775343957059.png" alt="Leto Black">
+                                    <button class="btn-add hover-btn">Sepete Ekle</button>
+                                </div>
+                                <div class="product-info minimal-info">
+                                    <div class="color-dots">
+                                        <span class="dot" style="background-color: #f1ebd9;"></span>
+                                    </div>
+                                    <h3 class="product-title">Tunçay Leto Yönetici Koltuğu</h3>
+                                    <span class="product-code">Ürün Kodu: 142301801</span>
+                                    <div class="price-wrapper">
+                                        <span class="old-price">₺ 12.999,00</span>
+                                        <span class="price new-price">8.900 ₺</span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Product 3 -->
+                            <div class="product-card minimal-card">
+                                <div class="product-image minimal-image">
+                                    <span class="discount-badge">%30</span>
+                                    <img src="file:///C:/Users/yagiz/.gemini/antigravity/brain/dd15ce44-4a2e-4372-a808-79255ac5df8b/tuncay_product_chair_3_1775343969654.png" alt="Bar Taburesi">
+                                    <button class="btn-add hover-btn">Sepete Ekle</button>
+                                </div>
+                                <div class="product-info minimal-info">
+                                    <div class="color-dots">
+                                        <span class="dot" style="background-color: #bfaea3;"></span>
+                                    </div>
+                                    <h3 class="product-title">Munich Bar Sandalyesi</h3>
+                                    <span class="product-code">Ürün Kodu: 212300302</span>
+                                    <div class="price-wrapper">
+                                        <span class="old-price">₺ 4.850,00</span>
+                                        <span class="price new-price">3.400 ₺</span>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <!-- Product 4 -->
+                            <div class="product-card minimal-card">
+                                <div class="product-image minimal-image">
+                                    <span class="discount-badge">%30</span>
+                                    <img src="file:///C:/Users/yagiz/.gemini/antigravity/brain/dd15ce44-4a2e-4372-a808-79255ac5df8b/tuncay_hero_chair_1775343931800.png" alt="Hero Chair">
+                                    <button class="btn-add hover-btn">Sepete Ekle</button>
+                                </div>
+                                <div class="product-info minimal-info">
+                                    <div class="color-dots">
+                                        <span class="dot" style="background-color: #ffffff; border: 1px solid #ddd;"></span>
+                                    </div>
+                                    <h3 class="product-title">Tunçay İmza Lüks Koltuk</h3>
+                                    <span class="product-code">Ürün Kodu: 202300201</span>
+                                    <div class="price-wrapper">
+                                        <span class="old-price">₺ 24.999,00</span>
+                                        <span class="price new-price">17.499 ₺</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Page 2 -->
+                    <div class="fav-page">
+                        <div class="minimal-product-grid">
+                            <!-- Product 5 -->
+                            <div class="product-card minimal-card">
+                                <div class="product-image minimal-image">
+                                    <span class="discount-badge" style="background-color: #1a1a1a;">YENİ</span>
+                                    <img src="file:///C:/Users/yagiz/.gemini/antigravity/brain/dd15ce44-4a2e-4372-a808-79255ac5df8b/tuncay_product_chair_2_1775343957059.png" alt="Leto White">
+                                    <button class="btn-add hover-btn">Sepete Ekle</button>
+                                </div>
+                                <div class="product-info minimal-info">
+                                    <div class="color-dots">
+                                        <span class="dot" style="background-color: #e2e2e2;"></span>
+                                        <span class="dot" style="background-color: #bfb095;"></span>
+                                    </div>
+                                    <h3 class="product-title">Tunçay Leto - Executive</h3>
+                                    <span class="product-code">Ürün Kodu: 142301809</span>
+                                    <div class="price-wrapper">
+                                        <span class="price new-price">9.200 ₺</span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Product 6 -->
+                            <div class="product-card minimal-card">
+                                <div class="product-image minimal-image">
+                                    <span class="discount-badge">%15</span>
+                                    <img src="file:///C:/Users/yagiz/.gemini/antigravity/brain/dd15ce44-4a2e-4372-a808-79255ac5df8b/tuncay_hero_chair_1775343931800.png" alt="Hero Relax">
+                                    <button class="btn-add hover-btn">Sepete Ekle</button>
+                                </div>
+                                <div class="product-info minimal-info">
+                                    <div class="color-dots">
+                                        <span class="dot" style="background-color: #a45a52;"></span>
+                                    </div>
+                                    <h3 class="product-title">İmza Relax Dinlenme Koltuğu</h3>
+                                    <span class="product-code">Ürün Kodu: 202300405</span>
+                                    <div class="price-wrapper">
+                                        <span class="old-price">₺ 21.000,00</span>
+                                        <span class="price new-price">17.850 ₺</span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Product 7 -->
+                            <div class="product-card minimal-card">
+                                <div class="product-image minimal-image">
+                                    <span class="discount-badge">%40</span>
+                                    <img src="file:///C:/Users/yagiz/.gemini/antigravity/brain/dd15ce44-4a2e-4372-a808-79255ac5df8b/tuncay_product_chair_1_1775343945013.png" alt="Keynote Black">
+                                    <button class="btn-add hover-btn">Sepete Ekle</button>
+                                </div>
+                                <div class="product-info minimal-info">
+                                    <div class="color-dots">
+                                        <span class="dot" style="background-color: #2b2b2b;"></span>
+                                    </div>
+                                    <h3 class="product-title">Keynote - Kömür Siyahı</h3>
+                                    <span class="product-code">Ürün Kodu: 192300109</span>
+                                    <div class="price-wrapper">
+                                        <span class="old-price">₺ 6.500,00</span>
+                                        <span class="price new-price">3.900 ₺</span>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <!-- Product 8 -->
+                            <div class="product-card minimal-card">
+                                <div class="product-image minimal-image">
+                                    <span class="discount-badge">%20</span>
+                                    <img src="file:///C:/Users/yagiz/.gemini/antigravity/brain/dd15ce44-4a2e-4372-a808-79255ac5df8b/tuncay_product_chair_3_1775343969654.png" alt="Munich Premium">
+                                    <button class="btn-add hover-btn">Sepete Ekle</button>
+                                </div>
+                                <div class="product-info minimal-info">
+                                    <div class="color-dots">
+                                        <span class="dot" style="background-color: #8c7355;"></span>
+                                    </div>
+                                    <h3 class="product-title">Munich Premium Bar</h3>
+                                    <span class="product-code">Ürün Kodu: 212300405</span>
+                                    <div class="price-wrapper">
+                                        <span class="old-price">₺ 5.250,00</span>
+                                        <span class="price new-price">4.200 ₺</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Page 3 -->
+                    <div class="fav-page">
+                        <div class="minimal-product-grid">
+                            <!-- Product 9 -->
+                            <div class="product-card minimal-card">
+                                <div class="product-image minimal-image">
+                                    <span class="discount-badge">%10</span>
+                                    <img src="file:///C:/Users/yagiz/.gemini/antigravity/brain/dd15ce44-4a2e-4372-a808-79255ac5df8b/tuncay_product_chair_2_1775343957059.png" alt="T-Pro Chair">
+                                    <button class="btn-add hover-btn">Sepete Ekle</button>
+                                </div>
+                                <div class="product-info minimal-info">
+                                    <div class="color-dots">
+                                        <span class="dot" style="background-color: #444;"></span>
+                                    </div>
+                                    <h3 class="product-title">T-Pro Ofis Sandalyesi</h3>
+                                    <span class="product-code">Ürün Kodu: 152300101</span>
+                                    <div class="price-wrapper">
+                                        <span class="old-price">₺ 8.500,00</span>
+                                        <span class="price new-price">7.650 ₺</span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Product 10 -->
+                            <div class="product-card minimal-card">
+                                <div class="product-image minimal-image">
+                                    <span class="discount-badge">%5</span>
+                                    <img src="file:///C:/Users/yagiz/.gemini/antigravity/brain/dd15ce44-4a2e-4372-a808-79255ac5df8b/tuncay_hero_chair_1775343931800.png" alt="Royal Comfort">
+                                    <button class="btn-add hover-btn">Sepete Ekle</button>
+                                </div>
+                                <div class="product-info minimal-info">
+                                    <div class="color-dots">
+                                        <span class="dot" style="background-color: #9c2a2a;"></span>
+                                    </div>
+                                    <h3 class="product-title">Royal Comfort Dinlenme</h3>
+                                    <span class="product-code">Ürün Kodu: 202300602</span>
+                                    <div class="price-wrapper">
+                                        <span class="old-price">₺ 19.500,00</span>
+                                        <span class="price new-price">18.525 ₺</span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Product 11 -->
+                            <div class="product-card minimal-card">
+                                <div class="product-image minimal-image">
+                                    <span class="discount-badge" style="background-color: #1a1a1a;">YENİ</span>
+                                    <img src="file:///C:/Users/yagiz/.gemini/antigravity/brain/dd15ce44-4a2e-4372-a808-79255ac5df8b/tuncay_product_chair_1_1775343945013.png" alt="Astra Bar">
+                                    <button class="btn-add hover-btn">Sepete Ekle</button>
+                                </div>
+                                <div class="product-info minimal-info">
+                                    <div class="color-dots">
+                                        <span class="dot" style="background-color: #d1d1d1;"></span>
+                                    </div>
+                                    <h3 class="product-title">Astra Premium Bar</h3>
+                                    <span class="product-code">Ürün Kodu: 212300501</span>
+                                    <div class="price-wrapper">
+                                        <span class="price new-price">5.200 ₺</span>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <!-- Product 12 -->
+                            <div class="product-card minimal-card">
+                                <div class="product-image minimal-image">
+                                    <span class="discount-badge">%25</span>
+                                    <img src="file:///C:/Users/yagiz/.gemini/antigravity/brain/dd15ce44-4a2e-4372-a808-79255ac5df8b/tuncay_product_chair_3_1775343969654.png" alt="Nordic Loft">
+                                    <button class="btn-add hover-btn">Sepete Ekle</button>
+                                </div>
+                                <div class="product-info minimal-info">
+                                    <div class="color-dots">
+                                        <span class="dot" style="background-color: #e5e5e5;"></span>
+                                    </div>
+                                    <h3 class="product-title">Nordic Loft Sandalyesi</h3>
+                                    <span class="product-code">Ürün Kodu: 162300109</span>
+                                    <div class="price-wrapper">
+                                        <span class="old-price">₺ 3.800,00</span>
+                                        <span class="price new-price">2.850 ₺</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Manual Navigation and Pagination -->
+                <div class="fav-controls">
+                    <button class="fav-nav-btn" id="fav-prev" aria-label="Önceki Sayfa">
+                        <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"></polyline></svg>
+                    </button>
+                    <div class="fav-pagination">
+                        <span class="fav-dot active" data-index="0"></span>
+                        <span class="fav-dot" data-index="1"></span>
+                        <span class="fav-dot" data-index="2"></span>
+                    </div>
+                    <button class="fav-nav-btn" id="fav-next" aria-label="Sonraki Sayfa">
+                        <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"></polyline></svg>
+                    </button>
+                </div>
+            </div>
+        </section>
+
+
+        <!-- Editorial Background Banner -->
+        <section class="editorial-banner banner-bg">
+            <div class="eb-container full-banner">
+                <div class="eb-text-content">
+                    <div class="eb-headline">
+                        <span class="eb-white">LÜKSÜ </span><span class="eb-orange">HİSSET</span>
+                    </div>
+                    <div class="eb-subheadline">
+                        ZAMANSIZ ÇİZGİLER, <br>KUSURSUZ ERGONOMİ.
+                    </div>
+                    <div class="eb-series">
+                        TUNÇAY LETO EXECUTIVE SERİSİ
+                    </div>
+                    
+                    <div class="eb-footer">
+                        <img src="logo2.png.png" alt="Tunçay Sandalye" class="eb-real-logo">
+                    </div>
+                </div>
+            </div>
+        </section>
+
+
+        <!-- 360 Degree Interactive Section -->
+        <section id="chair-360-view" class="chair-360-section">
+            <div class="sticky-container">
+                <div class="interactive-overlay">
+                    <h2>Keynote Black <span>360°</span></h2>
+                    <p>Detayları keşfetmek için sürükleyin</p>
+                </div>
+                <!-- Adding an explicit loading text so user knows 200MB is rendering -->
+                <div id="loading-360" class="loading-overlay">
+                    <span>Yüksek Çözünürlüklü Model Yükleniyor (%0)...</span>
+                </div>
+                <canvas id="chair-canvas"></canvas>
+                
+                <!-- Scroll Progress Indicator -->
+                <div class="scroll-progress-indicator">
+                    <div class="scroll-progress-track"></div>
+                    <div class="scroll-progress-thumb" id="progress-thumb"></div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Yorumlar Section - Editorial Design -->
+        <section id="yorumlar" class="testimonials fade-in">
+            <div class="testi-container">
+                <div class="testi-left">
+                    <span class="testi-subtitle">MÜŞTERİ VİZYONU</span>
+                    <h2>Kusursuz Deneyimler</h2>
+                    <p>Tunçay Sandalye kalitesini yaşam alanlarına taşıyan, konforu bir lüks değil standart olarak gören seçkin müşterilerimizin referansları.</p>
+                    <div class="testi-stats">
+                        <div class="stat">
+                            <span class="stat-num">500+</span>
+                            <span class="stat-text">Mutlu Müşteri</span>
+                        </div>
+                        <div class="stat">
+                            <div class="stars">
+                                <svg viewBox="0 0 24 24" fill="#d4af37" width="22" height="22"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"></path></svg>
+                                <svg viewBox="0 0 24 24" fill="#d4af37" width="22" height="22"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"></path></svg>
+                                <svg viewBox="0 0 24 24" fill="#d4af37" width="22" height="22"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"></path></svg>
+                                <svg viewBox="0 0 24 24" fill="#d4af37" width="22" height="22"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"></path></svg>
+                                <svg viewBox="0 0 24 24" fill="#d4af37" width="22" height="22"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"></path></svg>
+                            </div>
+                            <span class="stat-text">5 Yıldızlı Ortalama</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="testi-right">
+                    <div class="testi-card t-card-1">
+                        <div class="quote-icon">“</div>
+                        <p class="review-text">"Eskiden masamızda uzun süre oturamıyorduk. Sandalyeleri aldıktan sonra misafirlerimizle geçirdiğimiz saatler iki katına çıktı. Eşsiz bir konfor."</p>
+                        <div class="reviewer-info">
+                            <div class="r-avatar">EK</div>
+                            <div class="r-details">
+                                <strong>Elif K.</strong>
+                                <span>İç Mimar</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="testi-card t-card-2">
+                        <div class="quote-icon">“</div>
+                        <p class="review-text">"Kalitesi fotoğraflardan bile belli oluyordu ancak ürün eve geldiğinde işçiliğin bu kadar kusursuz olabileceğini tahmin etmemiştim. Lüks dokunuş muazzam."</p>
+                        <div class="reviewer-info">
+                            <div class="r-avatar">AB</div>
+                            <div class="r-details">
+                                <strong>Ahmet B.</strong>
+                                <span>İş İnsanı</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="testi-controls">
+                        <button class="testi-btn" id="t-prev" aria-label="Önceki yorum"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 18l-6-6 6-6"/></svg></button>
+                        <button class="testi-btn" id="t-next" aria-label="Sonraki yorum"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18l6-6-6-6"/></svg></button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-brand">
+                <img src="logo2.png.png" alt="Tunçay Sandalye Logosu" style="max-height: 50px; margin-bottom: 20px; filter: brightness(0) invert(1);">
+                <p>Oturduğunuz her anı lüks bir deneyime dönüştürüyoruz.</p>
+                <div style="margin-top: 25px; color: #bbb; display: flex; flex-direction: column; gap: 12px;">
+                    <div style="display: flex; align-items: center; gap: 10px;">
+                        <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg>
+                        <span style="font-size: 15px;">549 544 1400</span>
+                    </div>
+                    <div style="display: flex; align-items: center; gap: 10px;">
+                        <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
+                        <span style="font-size: 15px;">bakirci@tuncay.biz</span>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-links">
+                <h4>Hızlı Menü</h4>
+                <a href="#">Ana Sayfa</a>
+                <a href="#">Kurumsal</a>
+                <a href="#sandalye-modelleri">Ürünler</a>
+                <a href="#">İletişim</a>
+            </div>
+            <div class="footer-links">
+                <h4>Kurumsal</h4>
+                <a href="#">KVKK Aydınlatma Metni</a>
+                <a href="#">Gizlilik Politikası</a>
+                <a href="#">Mesafeli Satış Sözleşmesi</a>
+                <a href="#">İptal ve İade Koşulları</a>
+                <a href="#">Bilgi Toplumu Hizmetleri</a>
+            </div>
+            <div class="footer-social">
+                <h4>Bizi Takip Edin</h4>
+                <div class="social-icons">
+                    <a href="https://www.instagram.com/tuncaysandalye/" aria-label="Instagram">
+                        <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line></svg>
+                    </a>
+                    <a href="https://www.facebook.com/tuncaysandalye" aria-label="Facebook">
+                        <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"></path></svg>
+                    </a>
+                    <a href="https://www.youtube.com/@TuncayKontrplakOrmanUrunleri" aria-label="YouTube">
+                        <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22.54 6.42a2.78 2.78 0 0 0-1.94-2C18.88 4 12 4 12 4s-6.88 0-8.6.46a2.78 2.78 0 0 0-1.94 2A29 29 0 0 0 1 11.75a29 29 0 0 0 .46 5.33 2.78 2.78 0 0 0 1.94 2c1.72.46 8.6.46 8.6.46s6.88 0 8.6-.46a2.78 2.78 0 0 0 1.94-2 29 29 0 0 0 .46-5.33 29 29 0 0 0-.46-5.33z"></path><polygon points="9.75 15.02 15.5 11.75 9.75 8.48 9.75 15.02"></polygon></svg>
+                    </a>
+                </div>
+                
+                <h4 style="margin-top: 30px;">Ödeme Yöntemleri</h4>
+                <div class="payment-methods">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/5/5e/Visa_Inc._logo.svg" alt="Visa" class="payment-icon">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/2/2a/Mastercard-logo.svg" alt="Mastercard" class="payment-icon">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/f/f6/Troy_logo.png" alt="Troy" class="payment-icon">
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2026 Tunçay Sandalye. Tüm hakları saklıdır.</p>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
